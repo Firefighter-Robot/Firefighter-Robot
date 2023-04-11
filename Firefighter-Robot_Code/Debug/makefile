@@ -50,8 +50,8 @@ Drivers.bin \
 all: Drivers.elf secondary-outputs
 
 # Tool invocations
-Drivers.elf: $(OBJS) $(USER_OBJS) C:\Users\ELBOSTAN\Desktop\Drivers\STM32F103C6TX_FLASH.ld
-	arm-none-eabi-gcc -gdwarf-2 -o "Drivers.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\ELBOSTAN\Desktop\Drivers\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Drivers.elf: $(OBJS) $(USER_OBJS) D:\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld
+	arm-none-eabi-gcc -gdwarf-2 -o "Drivers.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Drivers.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

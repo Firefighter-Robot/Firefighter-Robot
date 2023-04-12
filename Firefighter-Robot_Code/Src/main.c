@@ -10,43 +10,152 @@
  ******************************************************************************
  */
 
-#include <stm32_f103c6_TIM2_3.h>
-#include"stm32_f103c6_GPIO.h"
-#include"stm32_f103c6_EXTI.h"
-#include "stm32f103x6.h"
-#include"stm32_f103c6_USART.h"
-#include"stm32_f103c6_SPI.h"
-#include "stm32_f103c6_I2C.h"
-#include "LCD.h"
-#include "Keypad.h"
-#include "EEPROM.h"
-#include "delay.h"
-#include "Servo.h"
-#include "stm32_f103c6_ADC.h"
+
+#include"APIs.h"
 
 
-void Clock_INIT(void)
+
+#define ULTRA_Threshold 
+#define Flame_Threshold 
+#define DISTANCE    140
+#define MotorSpeed 
+int n = 1;
+
+
+typedef enum Redirection 
 {
-    //set on the clock for PORTA
-    RCC_GPIOA_CLK_EN();
-    //set on the clock for PORTB
-    RCC_GPIOB_CLK_EN();
-    //set on the clock for AFIO
-    RCC_GPIOC_CLK_EN();
-    RCC_AFIO_CLK_EN();
-    RCC_TIM2_CLK_Enable();
-    RCC_TIM3_CLK_Enable();
-    RCC_TIM4_CLK_Enable();
-    RCC_ADC1_CLK_Enable();
+
+    Front_mid_en,
+    Front_Left_en,
+    Front_Right_en,
+    Right_en,
+    Left_en,
+    Back_en
+
+}Redirection; 
+
+
+Redirection Flame_MaxReading()
+{
+    int FrontMid = Flame_FrontMid_Read() - Flame_Threshold;
+    int FrontRight = Flame_FrontRight_Read() - Flame_Threshold;
+    int FrontLeft = Flame_FrontLeft_Read() - Flame_Threshold;
+    int Back = Flame_Back_Read() - Flame_Threshold;
+    int Right = Flame_Right_Read() - Flame_Threshold;
+    int Left = Flame_Left_Read() - Flame_Threshold;
+
+    if ((FrontMid > FrontRight) && (FrontMid > FrontLeft) && (FrontMid > Back) && (FrontMid > Right) && (FrontMid > Left))
+    {
+        return Front_mid_en;
+    }
+    else if ((FrontRight > FrontMid) && (FrontRight > FrontLeft) && (FrontRight > Back) && (FrontRight > Right) && (FrontRight > Left))
+    {
+        return Front_Right_en;
+    }
+    else if ((FrontLeft > FrontMid) && (FrontLeft > FrontRight) && (FrontLeft > Back) && (FrontLeft > Right) && (FrontLeft > Left))
+    {
+        return Front_Left_en;
+    }   
+    else if ((Back > FrontMid) && (Back > FrontRight) && (Back > FrontLeft) && (Back > Right) && (Back > Left))
+    {
+        return Back_en;
+    }
+    else if ((Right > FrontMid) && (Right > FrontRight) && (Right > FrontLeft) && (Right > Back) && (Right > Left))
+    {
+        return Right_en;
+    }
+    else{
+        return Left_en;
+    }   
+}
+
+void CarAdjustament (Redirection MaxReading)
+{
+    switch (MaxReading)
+    {
+    case Front_Left_en :
+    case Left_en :
+        //turn left
+        while(Flame_MaxReading() != Front_mid_en)
+        {
+            Car_Routation( 1 , Car_TurnLeft);
+        }   
+    case Front_Right_en :
+    case Right_en :
+    case Back_en :
+        //turn right
+        while(Flame_MaxReading() != Front_mid_en)
+        {
+            Car_Routation( 1 , Car_TurnRight);
+        }   
+    }
 }
 
 
-int main(void)
+void CarMovements()
 {
-	Clock_INIT();
-
-	while (1)
-	{
-
-	}
+    //turn_right -> n * count
+    Car_Routation( 90 , Car_TurnRight);
+    Car_Move(MotorSpeed , n * DISTANCE);
+    //turn right -> n * count
+    Car_Routation( 90 , Car_TurnRight);
+    Car_Move(MotorSpeed , n * DISTANCE);
+    n++;
+    
 }
+
+void CarAction ()
+{
+    while(!(Ultrasnic_Read() >= ULTRA_Threshold))
+    {
+        //move forward
+        Car_Move(MotorSpeed , 1);
+    }
+    //Routate the servo
+    Servo_RotationAngle(char angle , char dirction);
+    //pumb on   
+}
+
+
+main (){
+    Clock_INIT();
+    Init_GPIO();
+    Init_Timer();
+    Init_ADC();
+    Init_ultasonic();
+    Init_6_Flame();
+    Init_Motor_drive();
+    Init_servo();
+    Init_pumb();
+
+
+
+    while(1)
+    {
+
+        while(!((Ultrasnic_Read() >= ULTRA_Threshold) || (Flame_FrontMid_Read() >= Flame_Threshold) || (Flame_FrontRight_Read() >= Flame_Threshold) || (Flame_FrontLeft_Read() >= Flame_Threshold) || (Flame_Back_Read() >= Flame_Threshold) || (Flame_Right_Read() >= Flame_Threshold) || (Flame_Left_Read() >= Flame_Threshold)))
+        {
+            CarMovements();
+        }
+        if((Ultrasnic_Read() >= ULTRA_Threshold)) // detected object
+        {   if((Flame_FrontMid_Read() >= Flame_Threshold) || (Flame_FrontRight_Read() >= Flame_Threshold) || (Flame_FrontLeft_Read() >= Flame_Threshold) || (Flame_Back_Read() >= Flame_Threshold) || (Flame_Right_Read() >= Flame_Threshold) || (Flame_Left_Read() >= Flame_Threshold)) 
+            {
+                CarAdjustament (Flame_MaxReading());
+                CarAction();    
+            }
+            else
+            {
+                Car_Routation( 90 , Car_TurnRight);
+            }   
+        }
+        else if ((Flame_FrontMid_Read() >= Flame_Threshold) || (Flame_FrontRight_Read() >= Flame_Threshold) || (Flame_FrontLeft_Read() >= Flame_Threshold) || (Flame_Back_Read() >= Flame_Threshold) || (Flame_Right_Read() >= Flame_Threshold) || (Flame_Left_Read() >= Flame_Threshold))
+        {
+            CarAdjustament (Flame_MaxReading());
+            CarAction();
+        }
+    }
+
+}
+
+
+

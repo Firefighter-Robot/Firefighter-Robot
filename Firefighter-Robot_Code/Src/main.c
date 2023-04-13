@@ -107,6 +107,7 @@ void CarAction ()
 
 
 main (){
+	Clock_INIT();
 	Init_GPIO();
 	Init_Timer();
 	Init_ADC();

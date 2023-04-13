@@ -49,6 +49,10 @@
 
 
 
+#define pumb_on
+#define pumb_off
+
+
 
 int Flame_FrontMid_Read();
 int Flame_FrontRight_Read();
@@ -64,11 +68,10 @@ void Car_Routation(char angle , char direction);
 void Car_Move(char speed , char distance);
 void Servo_RotationAngle(char angle , char dirction);
 
+void Clock_INIT(void);
 
 
-
-
-
+void pumb(char action);
 
 
 

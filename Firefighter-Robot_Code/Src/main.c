@@ -4,7 +4,7 @@
 
 #define ULTRA_Threshold 
 #define Flame_Threshold 
-#define DISTANCE 	140
+#define DISTANCE 	50
 #define MotorSpeed 
 int n = 1;
 
@@ -25,12 +25,12 @@ typedef enum Redirection
 
 Redirection Flame_MaxReading()
 {
-	int FrontMid = Flame_FrontMid_Read() - Flame_Threshold;
-	int FrontRight = Flame_FrontRight_Read() - Flame_Threshold;
-	int FrontLeft = Flame_FrontLeft_Read() - Flame_Threshold;
-	int Back = Flame_Back_Read() - Flame_Threshold;
-	int Right = Flame_Right_Read() - Flame_Threshold;
-	int Left = Flame_Left_Read() - Flame_Threshold;
+	int FrontMid = Flame_FrontMid_Read() - (int)Flame_Threshold;
+	int FrontRight = Flame_FrontRight_Read() - (int)Flame_Threshold;
+	int FrontLeft = Flame_FrontLeft_Read() - (int)Flame_Threshold;
+	int Back = Flame_Back_Read() - (int)Flame_Threshold;
+	int Right = Flame_Right_Read() - (int)Flame_Threshold;
+	int Left = Flame_Left_Read() - (int)Flame_Threshold;
 
 	if ((FrontMid > FrontRight) && (FrontMid > FrontLeft) && (FrontMid > Back) && (FrontMid > Right) && (FrontMid > Left))
 	{
@@ -103,10 +103,12 @@ void CarAction ()
 	//Routate the servo
 	Servo_RotationAngle(char angle , char dirction);
 	//pumb on
+	pumb(on);
 }
 
 
-main (){
+
+void main (){
 	Clock_INIT();
 	Init_GPIO();
 	Init_Timer();
@@ -118,7 +120,7 @@ main (){
 	Init_pumb();
 
 	char object_detected ;
-	char flame_detected =  ;
+	char flame_detected ;
 
 	while(1)
 	{
@@ -136,7 +138,10 @@ main (){
 		}
 		else if (object_detected)
 		{
-			Car_Routation( 90 , Car_TurnRight);
+			n = 1;
+			CarMovements();
+			//todo 
+
 		}	
 		else if (flame_detected)
 		{

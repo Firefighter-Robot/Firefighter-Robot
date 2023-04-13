@@ -141,7 +141,8 @@ main (){
         {   if((Flame_FrontMid_Read() >= Flame_Threshold) || (Flame_FrontRight_Read() >= Flame_Threshold) || (Flame_FrontLeft_Read() >= Flame_Threshold) || (Flame_Back_Read() >= Flame_Threshold) || (Flame_Right_Read() >= Flame_Threshold) || (Flame_Left_Read() >= Flame_Threshold)) 
             {
                 CarAdjustament (Flame_MaxReading());
-                CarAction();    
+                CarAction(); 
+                n = 1;   
             }
             else
             {
@@ -152,6 +153,7 @@ main (){
         {
             CarAdjustament (Flame_MaxReading());
             CarAction();
+            n = 1;
         }
     }
 

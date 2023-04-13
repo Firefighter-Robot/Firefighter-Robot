@@ -31,6 +31,10 @@ typedef struct
 	uint16_t Prescalers		 ;	//The prescaler can divide the counter clock frequency by any factor between 1 and 65536..
 								//this parameter must be set based on  @ ref TIM2_Prescalers_Define
 
+	uint32_t TopValue		;
+
+	uint32_t CompareValue ;
+
 }TIMx_config_t;
 
 typedef enum

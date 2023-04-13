@@ -240,36 +240,36 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 	case CH1 :
 		{
 			TIMx->CCER|=1<<0;
-			//set init Compare value 10000
-			TIMx->CCR1 = 10000;
+			//set  Compare value
+			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH1);
 			break;
 		}
 	case CH2 :
 		{
 			TIMx->CCER|=3<<4;
-			//set init Compare value 10000
-			TIMx->CCR2 = 10000;
+			//set  Compare value
+			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH2);
 			break;
 		}
 	case CH3 :
 		{
 			TIMx->CCER|=1<<8;
-			//set init Compare value 10000
-			TIMx->CCR3 = 10000;
+			//set  Compare value
+			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH3);
 			break;
 		}
 	case CH4 :
 		{
 			TIMx->CCER|=1<<12;
-			//set init Compare value 10000
-			TIMx->CCR4 = 10000;
+			//set  Compare value
+			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH4);
 			break;
 		}
 	}
 	// set Prescalers
 	TIMx->PSC = TIMx_Config->Prescalers;
-	//set init top value 20000
-	TIMx->ARR = 20000;
+	//set top value 
+	MCAL_TIMx_Set_TOP_Value(TIMx ,TIMx_Config->TopValue);
 }
 
 /**================================================================

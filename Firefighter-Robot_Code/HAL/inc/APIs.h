@@ -17,7 +17,8 @@
 #include "stm32_f103c6_ADC.h"
 
 
-
+#define distance_step
+#define angle_step
 
 //Speeds
 #define Car_Speed_
@@ -54,7 +55,7 @@
 
 
 
-int Flame_FrontMid_Read();
+int Flame_Frontmid_Read();
 int Flame_FrontRight_Read();
 int Flame_FrontLeft_Read();
 int Flame_Back_Read();
@@ -64,8 +65,8 @@ int Flame_Left_Read();
 
 int Ultrasnic_Read();
 
-void Car_Routation(char angle , char direction);
-void Car_Move(char speed , char distance);
+void Car_Routation(char angle , char direction); //routate the car
+void Car_Move(char speed , char distance); //move foraward only
 void Servo_RotationAngle(char angle , char dirction);
 
 void Clock_INIT(void);

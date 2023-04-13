@@ -67,7 +67,7 @@ void CarAdjustament (Redirection MaxReading)
 		//turn left
 		while(Flame_MaxReading() != Front_mid_en)
 		{
-			Car_Routation( 1 , Car_TurnLeft);
+			Car_Routation( angle_step , Car_TurnLeft);
 		}	
 	case Front_Right_en :
 	case Right_en :
@@ -75,7 +75,7 @@ void CarAdjustament (Redirection MaxReading)
 		//turn right
 		while(Flame_MaxReading() != Front_mid_en)
 		{
-			Car_Routation( 1 , Car_TurnRight);
+			Car_Routation( angle_step , Car_TurnRight);
 		}	
 	}
 }
@@ -95,15 +95,19 @@ void CarMovements()
 
 void CarAction ()
 {
-	while(!(Ultrasnic_Read() >= ULTRA_Threshold))
+	while(!(Ultrasnic_Read() <= ULTRA_Threshold))
 	{
 		//move forward
-		Car_Move(MotorSpeed , 1);
+		Car_Move(MotorSpeed , distance_step);
 	}
 	//Routate the servo
 	Servo_RotationAngle(char angle , char dirction);
 	//pumb on
-	pumb(on);
+	while(Flame_FrontMid_Read() >= Flame_Threshold)
+	{	
+		pumb(pumb_on);
+	}
+	pumb(pumb_off);
 }
 
 
@@ -119,14 +123,14 @@ void main (){
 	Init_servo();
 	Init_pumb();
 
-	char object_detected ;
-	char flame_detected ;
+	unsigned char object_detected ;
+	unsigned char flame_detected ;
 
 	while(1)
 	{
-		object_detected = (Ultrasnic_Read() >= ULTRA_Threshold);
+		object_detected = (Ultrasnic_Read() <= ULTRA_Threshold);
 		flame_detected = ((Flame_FrontMid_Read() >= Flame_Threshold) || (Flame_FrontRight_Read() >= Flame_Threshold) || (Flame_FrontLeft_Read() >= Flame_Threshold) || (Flame_Back_Read() >= Flame_Threshold) || (Flame_Right_Read() >= Flame_Threshold) || (Flame_Left_Read() >= Flame_Threshold) );
-		if(!(object_detected && flame_detected))
+		if(!(object_detected || flame_detected))
 		{
 			CarMovements();
 		}

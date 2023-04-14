@@ -110,9 +110,7 @@ void CarAction ()
 	pumb(pumb_off);
 }
 
-
-
-void main (){
+int main (){
 	Clock_INIT();
 	Init_GPIO();
 	Init_Timer();

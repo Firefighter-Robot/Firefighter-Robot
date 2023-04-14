@@ -272,6 +272,82 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 	MCAL_TIMx_Set_TOP_Value(TIMx ,TIMx_Config->TopValue);
 }
 
+
+
+void MCAL_TIM4_CAP_Init(void)
+{
+	//set pin capture input channel 1
+	GPIO_Pinconfig_t pinconfig ;
+	pinconfig.GPIO_MODE=GPIO_MODE_INPUT_FLO;
+	pinconfig.pinNumber=GPIO_PIN_6;
+	MCAL_GPIO_Init(GPIOB, &pinconfig);
+	//set Prescalers 7+1=8 TIM4 Clock=8mhz/8=1mh
+	TIM4->PSC=7;
+	//set top value
+	TIM4->ARR=0XFFFF;
+	//CC1 channel is configured as input, IC1 is mapped on TI1
+	TIM4->CCMR1 =0x31;
+	// Enable capture on CC1
+	TIM4->CCER |= (1<<0);
+}
+
+
+float MCAL_TIM4_CAP_Get_High(void)
+{
+	// enable counter
+	TIM4->CR1=1;
+	//Set CAP at raising edge
+	TIM4->CCER &=~(1<<1);
+	//wait until raising edge
+	while(!(TIM4->SR &(1<<1)));
+	TIM4->SR=0;
+	//reset counter
+	TIM4->CNT=0;
+	//Set CAP at falling edge
+	TIM4->CCER |=1<<1;
+	//wait until falling edge
+	while(!(TIM4->SR &(1<<1)));
+	TIM4->SR=0;
+	// disable counter
+	TIM4->CR1=0;
+	return ((1.0/1000000)*TIM4->CCR1);
+}
+
+float MCAL_TIM4_CAP_Get_Low(void)
+{
+	// enable counter
+	TIM4->CR1=1;
+	//Set CAP at falling edge
+	TIM4->CCER |=1<<1;
+	//wait until falling edge
+	while(!(TIM4->SR &(1<<1)));
+	TIM4->SR=0;
+	//reset counter
+	TIM4->CNT=0;
+	//Set CAP at raising edge
+	TIM4->CCER &=~(1<<1);
+	//wait until raising edge
+	while(!(TIM4->SR &(1<<1)));
+	TIM4->SR=0;
+	// disable counter
+	TIM4->CR1=0;
+	return ((1.0/1000000)*TIM4->CCR1);
+}
+
+uint16_t MCAL_TIM4_CAP_Get_Freq(void)
+{
+	uint16_t freq;
+	freq=1/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
+	return freq;
+}
+
+uint16_t MCAL_TIM4_CAP_Get_Duty_Cycle(void)
+{
+	uint16_t Duty;
+	Duty=MCAL_TIM4_CAP_Get_High()/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
+	return Duty;
+}
+
 /**================================================================
 * @Fn				-MCAL_TIMx_Set_Compare_Value
 * @brief		  	-set a compare value to compared with the counter value  to generate waveform output (at PWM Mode)

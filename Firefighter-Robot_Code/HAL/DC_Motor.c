@@ -34,7 +34,11 @@ void Car_Routation(char angle , char direction)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Right_Motor
 		HAL_PWM_Set(_50_Duty_cycle,Front_Right_Motor);
+		// by iteraton set delay to specific rotation 
+		delay_ms(100);
 
+		// stop Front_Right_Motor
+		HAL_PWM_Set(_0_Duty_cycle,Front_Right_Motor);
 		// stop Front_Left_Motor
 		HAL_PWM_Set(_0_Duty_cycle,Front_Left_Motor);
 		// stop Back_Left_Motor
@@ -47,7 +51,12 @@ void Car_Routation(char angle , char direction)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
 		HAL_PWM_Set(_50_Duty_cycle,Front_Left_Motor);
+		// by iteraton set delay to specific rotation 
+		delay_ms(100);
 
+
+		// stop Front_Left_Motor
+		HAL_PWM_Set(_0_Duty_cycle,Front_Left_Motor);
 		// stop Front_Right_Motor
 		HAL_PWM_Set(_0_Duty_cycle,Front_Right_Motor);
 		// stop Back_Left_Motor

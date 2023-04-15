@@ -21,6 +21,7 @@ void Ultrasonic_init(void)
 	GPIO_Pin.GPIO_MODE = GPIO_MODE_OUTPUT_AF_PP;
 	GPIO_Pin.GPIO_OUTPUT_Speed = GPIO_speed_10M;
 	GPIO_Pin.pinNumber = Trigger_Pin;
+	MCAL_GPIO_Init(PORT,&GPIO_Pin);
 
 }
 

@@ -56,6 +56,6 @@
 void HAL_PWM_Set(uint32_t Duty_cycle,uint8_t Motor);
 void Car_Routation(char angle , char direction);
 void Car_Move(char speed , char distance);
-
+void Car_Stop_Moving(void);
 
 #endif /* INC_DC_MOTOR_H_ */

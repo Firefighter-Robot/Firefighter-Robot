@@ -24,7 +24,7 @@ void Ultrasonic_init(void)
 
 }
 
-int Ultrasnic_Read(void)
+uint8_t Ultrasnic_Read(void)
 {
 	uint8_t Distance;
 

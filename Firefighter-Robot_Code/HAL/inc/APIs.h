@@ -63,16 +63,16 @@ int Flame_Right_Read();
 int Flame_Left_Read();
 
 
-int Ultrasnic_Read();
+extern uint8_t Ultrasnic_Read();
+    
+extern void Car_Routation(char angle , char direction); //routate the car
+extern void Car_Move(char speed , char distance); //move foraward only
+extern void Servo_RotationAngle(char angle , char dirction);
 
-void Car_Routation(char angle , char direction); //routate the car
-void Car_Move(char speed , char distance); //move foraward only
-void Servo_RotationAngle(char angle , char dirction);
-
-void Clock_INIT(void);
+extern void Clock_INIT(void);
 
 
-void pumb(char action);
+extern void pumb(char action);
 
 
 

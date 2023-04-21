@@ -33,13 +33,13 @@ void Car_Routation(char angle , char direction)
 	if(direction == Car_TurnLeft)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Right_Motor
-		HAL_PWM_Set(_50_Duty_cycle,Front_Right_Motor);
+		HAL_PWM_Set(_Duty_Cycle(50),Front_Right_Motor);
 		// stop Front_Left_Motor
-		HAL_PWM_Set(_0_Duty_cycle,Front_Left_Motor);
+		HAL_PWM_Set(_Duty_Cycle(0),Front_Left_Motor);
 		// stop Back_Left_Motor
-		HAL_PWM_Set(_0_Duty_cycle,Back_Left_Motor);
+		HAL_PWM_Set(_Duty_Cycle(0),Back_Left_Motor);
 		// stop Back_Right_Motor
-		HAL_PWM_Set(_0_Duty_cycle,Back_Right_Motor);
+		HAL_PWM_Set(_Duty_Cycle(0),Back_Right_Motor);
 
 
 		// by iteration set delay to specific rotation
@@ -53,13 +53,13 @@ void Car_Routation(char angle , char direction)
 	else if(direction == Car_TurnRight)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
-		HAL_PWM_Set(_50_Duty_cycle,Front_Left_Motor);
+		HAL_PWM_Set(_Duty_Cycle(50),Front_Left_Motor);
 		// stop Front_Right_Motor
-		HAL_PWM_Set(_0_Duty_cycle,Front_Right_Motor);
+		HAL_PWM_Set(_Duty_Cycle(0),Front_Right_Motor);
 		// stop Back_Left_Motor
-		HAL_PWM_Set(_0_Duty_cycle,Back_Left_Motor);
+		HAL_PWM_Set(_Duty_Cycle(0),Back_Left_Motor);
 		// stop Back_Right_Motor
-		HAL_PWM_Set(_0_Duty_cycle,Back_Right_Motor);
+		HAL_PWM_Set(_Duty_Cycle(0),Back_Right_Motor);
 
 
 		// by iteration set delay to specific rotation
@@ -78,10 +78,10 @@ void Car_Routation(char angle , char direction)
 void Car_Move(char speed , char distance)
 {
 	// by iteration set duty cycle to specific speed
-	HAL_PWM_Set(_50_Duty_cycle,Front_Left_Motor);
-	HAL_PWM_Set(_50_Duty_cycle,Front_Right_Motor);
-	HAL_PWM_Set(_50_Duty_cycle,Back_Left_Motor);
-	HAL_PWM_Set(_50_Duty_cycle,Back_Right_Motor);
+	HAL_PWM_Set(_Duty_Cycle(50),Front_Left_Motor);
+	HAL_PWM_Set(_Duty_Cycle(50),Front_Right_Motor);
+	HAL_PWM_Set(_Duty_Cycle(50),Back_Left_Motor);
+	HAL_PWM_Set(_Duty_Cycle(50),Back_Right_Motor);
 
 	// by iteration set delay to specific distance
 	delay_ms(2000);

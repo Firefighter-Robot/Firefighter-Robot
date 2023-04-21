@@ -27,6 +27,7 @@
 
 #define Top_Value										(uint16_t)10000
 
+// set specific duty cycle
 #define _Step_5_Duty_Cycle								(uint16_t)(Top_Value / 20)
 
 
@@ -51,6 +52,12 @@
 #define _90_Duty_cycle									(uint16_t)(Top_Value - (18*_Step_5_Duty_Cycle))
 #define _95_Duty_cycle									(uint16_t)(Top_Value - (19*_Step_5_Duty_Cycle))
 #define _100_Duty_cycle									(uint16_t)(Top_Value - (20*_Step_5_Duty_Cycle))
+
+
+
+// set any duty cycle
+#define _Step_Duty_Cycle								(uint16_t)(Top_Value / 100)
+#define _Duty_Cycle(x)									(uint16_t)( (Top_Value - (x*_Step_Duty_Cycle) ) )
 
 
 void HAL_PWM_Set(uint32_t Duty_cycle,uint8_t Motor);

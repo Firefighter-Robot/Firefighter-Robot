@@ -21,8 +21,8 @@
 
 
 //Directions
-#define Car_TurnRight									0
-#define Car_TurnLeft									1
+#define HAL_Car_TurnRight									0
+#define HAL_Car_TurnLeft									1
 
 
 #define Top_Value										(uint16_t)10000
@@ -62,7 +62,7 @@
 
 void HAL_PWM_Set(uint32_t Duty_cycle,uint8_t Motor);
 void Car_Routation(char angle , char direction);
-void Car_Move(char speed , char distance);
+void Car_Move(uint16_t speed , char distance);
 void Car_Stop_Moving(void);
 
 #endif /* INC_DC_MOTOR_H_ */

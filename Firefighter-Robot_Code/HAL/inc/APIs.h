@@ -24,8 +24,8 @@
 
 
 
-#define distance_step
-#define angle_step
+#define distance_step		10
+#define angle_step			50
 
 //Speeds
      
@@ -53,8 +53,8 @@
 
 
 //Directions
-#define Car_TurnRight
-#define Car_TurnLeft
+#define Car_TurnRight	HAL_Car_TurnRight
+#define Car_TurnLeft	HAL_Car_TurnLeft
 
 #define Servo_TurnRight
 #define Servo_TurnLeft
@@ -78,45 +78,31 @@
 #define pumb_on
 #define pumb_off
 
+#define pumb(x)
 
 
-int Flame_Frontmid_Read();
-int Flame_FrontRight_Read();
-int Flame_FrontLeft_Read();
-int Flame_Back_Read();
-int Flame_Right_Read();
-int Flame_Left_Read();
+extern int Flame_Frontmid_Read();
+extern int Flame_FrontRight_Read();
+extern int Flame_FrontLeft_Read();
+extern int Flame_Back_Read();
+extern int Flame_Right_Read();
+extern int Flame_Left_Read();
+
+
+
 
 
 extern uint8_t Ultrasnic_Read();
     
 extern void Car_Routation(char angle , char direction); //routate the car
-extern void Car_Move(char speed , char distance); //move foraward only
+extern void Car_Move(uint16_t speed , char distance); //move foraward only
 extern void Servo_RotationAngle(char angle , char dirction);
 
 extern void Clock_INIT(void);
 
 
-extern void pumb(char action);
+//extern void pumb(char action);
 
-
-
-
-
-void Clock_INIT(void)
-{
-    //set on the clock for PORTA
-    RCC_GPIOA_CLK_EN();
-    //set on the clock for PORTB
-    RCC_GPIOB_CLK_EN();
-    //set on the clock for AFIO
-    RCC_GPIOC_CLK_EN();
-    RCC_AFIO_CLK_EN();
-    RCC_TIM2_CLK_Enable();
-    RCC_TIM3_CLK_Enable();
-    RCC_TIM4_CLK_Enable();
-    RCC_ADC1_CLK_Enable();
-}
 
 
 

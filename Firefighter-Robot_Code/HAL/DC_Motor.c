@@ -30,7 +30,7 @@ void Car_Routation(char angle , char direction)
 
 	// todo equation to calculate the duty cycle from angle
 
-	if(direction == Car_TurnLeft)
+	if(direction == HAL_Car_TurnLeft)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Right_Motor
 		HAL_PWM_Set(_Duty_Cycle(50),Front_Right_Motor);
@@ -50,7 +50,7 @@ void Car_Routation(char angle , char direction)
 
 
 	}
-	else if(direction == Car_TurnRight)
+	else if(direction == HAL_Car_TurnRight)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
 		HAL_PWM_Set(_Duty_Cycle(50),Front_Left_Motor);
@@ -75,7 +75,7 @@ void Car_Routation(char angle , char direction)
 
 
 
-void Car_Move(char speed , char distance)
+void Car_Move(uint16_t speed , char distance)
 {
 	// by iteration set duty cycle to specific speed
 	HAL_PWM_Set(_Duty_Cycle(50),Front_Left_Motor);

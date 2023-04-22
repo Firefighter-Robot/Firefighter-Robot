@@ -1,10 +1,10 @@
 #include "Flame_Sensor.h"
 
 ADC_config_t ADC_Pin;
+
+
 void HAL_Flame_init(void)
 {
-
-
 
 
 }

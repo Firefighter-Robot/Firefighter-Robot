@@ -154,8 +154,6 @@ void CarAction ()
 
 
 
-
-
 void HAL_Driver_init(void)
 {
 	HAL_Flame_init();
@@ -167,23 +165,10 @@ void HAL_Driver_init(void)
 }
 
 
-
-
-
-
-
-
-
-
 int main (){
-
 
 	Clock_INIT();
 	HAL_Driver_init();
-
-
-int main (){
-
 
 	unsigned char object_detected ;
 	unsigned char flame_detected ;

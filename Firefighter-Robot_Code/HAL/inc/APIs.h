@@ -23,9 +23,6 @@
 
 
 
-
-
-
 #define distance_step								5
 #define angle_step									5
 
@@ -114,11 +111,6 @@ extern void Clock_INIT(void);
 
 
 //extern void pumb(char action);
-
-
-
-
-
 
 
 

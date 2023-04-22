@@ -11,11 +11,8 @@
 #define Flame_Left_ch
 
 //=================================APIS==================
-<<<<<<< HEAD
-void HAL_Flame_init(void);
-=======
 
->>>>>>> 4eba040f452215fb65d2c5b4382abb6cf435b301
+void HAL_Flame_init(void);
 int Flame_Frontmid_Read();
 int Flame_FrontRight_Read();
 int Flame_FrontLeft_Read();

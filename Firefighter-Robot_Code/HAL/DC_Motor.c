@@ -41,7 +41,7 @@ void Car_Routation(char angle , char direction)
 
 	// todo equation to calculate the duty cycle from angle
 
-	if(direction == Car_TurnLeft)
+	if(direction == HAL_Car_TurnLeft)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Right_Motor
 		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(70),Front_Right_Motor);
@@ -60,7 +60,7 @@ void Car_Routation(char angle , char direction)
 		Car_Stop_Moving();
 
 	}
-	else if(direction == Car_TurnRight)
+	else if(direction == HAL_Car_TurnRight)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
 		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Front_Left_Motor);
@@ -85,7 +85,7 @@ void Car_Routation(char angle , char direction)
 
 
 
-void Car_Move(char speed , char distance)
+void Car_Move(uint16_t speed , char distance)
 {
 	// by iteration set duty cycle to specific speed
 	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Front_Left_Motor);

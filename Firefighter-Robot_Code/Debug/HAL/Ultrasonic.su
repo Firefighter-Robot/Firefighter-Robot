@@ -1,7 +1,2 @@
-<<<<<<< HEAD
-Ultrasonic.c:14:6:HAL_Ultrasonic_init	8	static
-Ultrasonic.c:28:9:Ultrasnic_Read	16	static
-=======
-../HAL/Ultrasonic.c:14:6:Ultrasonic_init	8	static
+../HAL/Ultrasonic.c:14:6:HAL_Ultrasonic_init	8	static
 ../HAL/Ultrasonic.c:28:9:Ultrasnic_Read	16	static
->>>>>>> 4eba040f452215fb65d2c5b4382abb6cf435b301

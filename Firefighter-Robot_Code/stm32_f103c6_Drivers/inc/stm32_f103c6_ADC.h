@@ -32,7 +32,7 @@ enum NUM_CH
 	Ch14,
 	Ch15,
 	Ch16,
-	Ch17,
+	Ch17
 };
 
 

@@ -11,7 +11,7 @@
 GPIO_Pinconfig_t GPIO_Pin;
 
 
-void Ultrasonic_init(void)
+void HAL_Ultrasonic_init(void)
 {
 
 	// set timer 4 configuration
@@ -28,6 +28,8 @@ void Ultrasonic_init(void)
 uint8_t Ultrasnic_Read(void)
 {
 	uint8_t Distance;
+
+	MCAL_TIM4_CAP_Init();
 
 	//trigger pulse for 10ms to start the ultrasonic
 	MCAL_GPIO_WritePin(PORT, Trigger_Pin, GPIO_PIN_SET);

@@ -334,6 +334,7 @@ float MCAL_TIM4_CAP_Get_Low(void)
 	return ((1.0/1000000)*TIM4->CCR1);
 }
 
+
 uint16_t MCAL_TIM4_CAP_Get_Freq(void)
 {
 	uint16_t freq;

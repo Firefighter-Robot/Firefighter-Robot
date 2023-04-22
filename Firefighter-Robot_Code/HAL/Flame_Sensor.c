@@ -1,4 +1,13 @@
 #include "Flame_Sensor.h"
+
+ADC_config_t ADC_Pin;
+void HAL_Flame_init(void)
+{
+
+
+
+
+}
 int Flame_Frontmid_Read()
 {
 	return MCAL_ADC_Read(0);
@@ -23,3 +32,7 @@ int Flame_Left_Read()
 {
 	return MCAL_ADC_Read(5);
 }
+
+
+
+

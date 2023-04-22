@@ -60,7 +60,7 @@
 #define _Duty_Cycle(x)									(uint16_t)( (Top_Value - (x*_Step_Duty_Cycle) ) )
 
 
-void HAL_PWM_Set(uint32_t Duty_cycle,uint8_t Motor);
+void HAL_DC_Motors_init(void);
 void Car_Routation(char angle , char direction);
 void Car_Move(char speed , char distance);
 void Car_Stop_Moving(void);

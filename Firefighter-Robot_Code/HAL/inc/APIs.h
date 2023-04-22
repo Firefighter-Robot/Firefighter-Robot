@@ -17,6 +17,7 @@
 #include "stm32_f103c6_ADC.h"
 #include "DC_Motor.h"
 #include "Ultrasonic.h"
+#include "Flame_Sensor.h"
 
 
 
@@ -24,8 +25,8 @@
 
 
 
-#define distance_step
-#define angle_step
+#define distance_step								5
+#define angle_step									5
 
 //Speeds
      
@@ -52,9 +53,6 @@
 #define Car_Speed_100     _100_Duty_cycle     
 
 
-//Directions
-#define Car_TurnRight
-#define Car_TurnLeft
 
 #define Servo_TurnRight
 #define Servo_TurnLeft
@@ -94,6 +92,9 @@ extern void Car_Routation(char angle , char direction); //routate the car
 extern void Car_Move(char speed , char distance); //move foraward only
 extern void Servo_RotationAngle(char angle , char dirction);
 
+
+extern void Car_Stop_Moving();
+
 extern void Clock_INIT(void);
 
 
@@ -103,20 +104,7 @@ extern void pumb(char action);
 
 
 
-void Clock_INIT(void)
-{
-    //set on the clock for PORTA
-    RCC_GPIOA_CLK_EN();
-    //set on the clock for PORTB
-    RCC_GPIOB_CLK_EN();
-    //set on the clock for AFIO
-    RCC_GPIOC_CLK_EN();
-    RCC_AFIO_CLK_EN();
-    RCC_TIM2_CLK_Enable();
-    RCC_TIM3_CLK_Enable();
-    RCC_TIM4_CLK_Enable();
-    RCC_ADC1_CLK_Enable();
-}
+
 
 
 

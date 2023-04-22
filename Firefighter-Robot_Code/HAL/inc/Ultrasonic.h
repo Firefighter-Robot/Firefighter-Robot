@@ -13,11 +13,11 @@
 #include "delay.h"
 
 
-#define Trigger_Pin 					GPIO_PIN_0
+#define Trigger_Pin 					GPIO_PIN_5
 #define PORT 							GPIOB
 
 
-void Ultrasonic_init(void);
+void HAL_Ultrasonic_init(void);
 uint8_t Ultrasnic_Read(void);
 
 

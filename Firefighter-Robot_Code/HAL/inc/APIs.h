@@ -32,27 +32,54 @@
 
 //Speeds
      
-#define Car_Speed_0       _0_Duty_cycle       
-#define Car_Speed_5       _5_Duty_cycle       
-#define Car_Speed_10      _10_Duty_cycle  
-#define Car_Speed_15      _15_Duty_cycle  
-#define Car_Speed_20      _20_Duty_cycle  
-#define Car_Speed_25      _25_Duty_cycle  
-#define Car_Speed_30      _30_Duty_cycle  
-#define Car_Speed_35      _35_Duty_cycle  
-#define Car_Speed_40      _40_Duty_cycle  
-#define Car_Speed_45      _45_Duty_cycle  
-#define Car_Speed_50      _50_Duty_cycle  
-#define Car_Speed_55      _55_Duty_cycle  
-#define Car_Speed_60      _60_Duty_cycle  
-#define Car_Speed_65      _65_Duty_cycle  
-#define Car_Speed_70      _70_Duty_cycle  
-#define Car_Speed_75      _75_Duty_cycle  
-#define Car_Speed_80      _80_Duty_cycle  
-#define Car_Speed_85      _85_Duty_cycle  
-#define Car_Speed_90      _90_Duty_cycle  
-#define Car_Speed_95      _95_Duty_cycle  
-#define Car_Speed_100     _100_Duty_cycle     
+#define Car_Speed_0      0
+#define Car_Speed_5      5
+#define Car_Speed_10     10
+#define Car_Speed_15     15
+#define Car_Speed_20     20
+#define Car_Speed_25     25
+#define Car_Speed_30     30
+#define Car_Speed_35     35
+#define Car_Speed_40     40
+#define Car_Speed_45     45
+#define Car_Speed_50     50
+#define Car_Speed_55     55
+#define Car_Speed_60     60
+#define Car_Speed_65     65
+#define Car_Speed_70     70
+#define Car_Speed_75     75
+#define Car_Speed_80     80
+#define Car_Speed_85     85
+#define Car_Speed_90     90
+#define Car_Speed_95     95
+#define Car_Speed_100    100
+
+
+
+
+
+
+#define Angle_Step_0      0
+#define Angle_Step_5      5
+#define Angle_Step_10     10
+#define Angle_Step_15     15
+#define Angle_Step_20     20
+#define Angle_Step_25     25
+#define Angle_Step_30     30
+#define Angle_Step_35     35
+#define Angle_Step_40     40
+#define Angle_Step_45     45
+#define Angle_Step_50     50
+#define Angle_Step_55     55
+#define Angle_Step_60     60
+#define Angle_Step_65     65
+#define Angle_Step_70     70
+#define Angle_Step_75     75
+#define Angle_Step_80     80
+#define Angle_Step_85     85
+#define Angle_Step_90     90
+#define Angle_Step_95     95
+#define Angle_Step_100    100
 
 
 

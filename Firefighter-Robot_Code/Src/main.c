@@ -109,7 +109,7 @@ void CarAdjustament (Redirection MaxReading)
 		//turn left
 		while(Flame_MaxReading() != Front_mid_en)
 		{
-			Car_Routation( angle_step , Car_TurnLeft);
+			Car_Routation( Angle_Step_40 , Car_TurnLeft);
 		}
 	case Front_Right_en :
 	case Right_en :
@@ -117,7 +117,7 @@ void CarAdjustament (Redirection MaxReading)
 		//turn right
 		while(Flame_MaxReading() != Front_mid_en)
 		{
-			Car_Routation( angle_step , Car_TurnRight);
+			Car_Routation( Angle_Step_40 , Car_TurnRight);
 		}
 	}
 }

@@ -44,7 +44,7 @@ void Car_Routation(char angle , char direction)
 	if(direction == HAL_Car_TurnLeft)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Right_Motor
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(70),Front_Right_Motor);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(angle),Front_Right_Motor);
 
 		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(15),Front_Left_Motor);
 
@@ -63,7 +63,7 @@ void Car_Routation(char angle , char direction)
 	else if(direction == HAL_Car_TurnRight)
 	{
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Front_Left_Motor);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(angle),Front_Left_Motor);
 
 		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(15),Front_Right_Motor);
 
@@ -88,10 +88,10 @@ void Car_Routation(char angle , char direction)
 void Car_Move(uint16_t speed , char distance)
 {
 	// by iteration set duty cycle to specific speed
-	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Front_Left_Motor);
-	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Front_Right_Motor);
-	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Back_Left_Motor);
-	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Back_Right_Motor);
+	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(speed),Front_Left_Motor);
+	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(speed),Front_Right_Motor);
+	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(speed),Back_Left_Motor);
+	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(speed),Back_Right_Motor);
 
 	// by iteration set delay to specific distance
 	delay_ms(2000);

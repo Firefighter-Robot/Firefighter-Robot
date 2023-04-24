@@ -19,7 +19,6 @@
 #include"APIs.h"
 
 
-
 #define ULTRA_Threshold			20
 #define Flame_Threshold			40
 #define DISTANCE 	50

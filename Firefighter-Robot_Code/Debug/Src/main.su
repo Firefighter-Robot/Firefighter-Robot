@@ -1,7 +1,7 @@
-../Src/main.c:50:6:Clock_INIT	4	static
-../Src/main.c:68:13:Flame_MaxReading	32	static
-../Src/main.c:103:6:CarAdjustament	16	static
-../Src/main.c:126:6:CarMovements	8	static
-../Src/main.c:138:6:CarAction	8	static
-../Src/main.c:157:6:HAL_Driver_init	8	static
-../Src/main.c:168:5:main	16	static
+main.c:49:6:Clock_INIT	4	static
+main.c:67:13:Flame_MaxReading	32	static
+main.c:102:6:CarAdjustament	16	static
+main.c:125:6:CarMovements	8	static
+main.c:137:6:CarAction	8	static
+main.c:156:6:HAL_Driver_init	8	static
+main.c:167:5:main	16	static

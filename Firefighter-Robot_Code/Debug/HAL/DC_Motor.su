@@ -1,4 +1,4 @@
-../HAL/DC_Motor.c:15:6:HAL_DC_Motors_init	8	static
-../HAL/DC_Motor.c:39:6:Car_Routation	16	static
-../HAL/DC_Motor.c:88:6:Car_Move	16	static
-../HAL/DC_Motor.c:103:6:Car_Stop_Moving	8	static
+DC_Motor.c:15:6:HAL_DC_Motors_init	8	static
+DC_Motor.c:39:6:Car_Routation	16	static
+DC_Motor.c:88:6:Car_Move	16	static
+DC_Motor.c:103:6:Car_Stop_Moving	8	static

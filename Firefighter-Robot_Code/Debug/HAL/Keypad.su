@@ -1,2 +1,2 @@
-../HAL/Keypad.c:13:6:keypad_init	8	static
-../HAL/Keypad.c:77:6:keypad_getkey	16	static
+Keypad.c:13:6:keypad_init	8	static
+Keypad.c:77:6:keypad_getkey	16	static

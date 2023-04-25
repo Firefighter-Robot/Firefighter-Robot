@@ -11,6 +11,57 @@
 
 
 TIMx_config_t Timer2;
+GPIO_Pinconfig_t GPIO_Pin;
+
+Motor1_Front                                    GPIO_PIN_10  // PORTA                                
+Motor1_Back                                     GPIO_PIN_11  // PORTA
+Motor2_Front                                    GPIO_PIN_12  // PORTA
+Motor2_Back                                     GPIO_PIN_13  // PORTA
+Motor3_Front                                    GPIO_PIN_3   // PORTB
+Motor3_Back                                     GPIO_PIN_4   // PORTB
+Motor4_Front                                    GPIO_PIN_7   // PORTB
+Motor4_Back                                     GPIO_PIN_8   // PORTB
+void Set_GPIO_pins(void)
+{
+	
+	GPIO_Pin.MODE = GPIO_MODE_OUTPUT_AF_PP;
+	GPIO_Pin.GPIO_OUTPUT_Speed = GPIO_speed_10M;
+
+	// Front_Left_Motor    Motor1_Front 
+	GPIO_Pin.pinNumber = Motor1_Front;
+	MCAL_GPIO_Init(GPIOA,&GPIO_Pin);
+
+	// Front_Left_Motor    Motor1_Back 
+	GPIO_Pin.pinNumber = Motor1_Back;
+	MCAL_GPIO_Init(GPIOA,&GPIO_Pin);
+
+	// Front_Right_Motor	Motor2_Front
+	GPIO_Pin.pinNumber = Motor2_Front;
+	MCAL_GPIO_Init(GPIOA,&GPIO_Pin);
+
+	// Front_Right_Motor	Motor2_Back	
+	GPIO_Pin.pinNumber = Motor2_Back;
+	MCAL_GPIO_Init(GPIOA,&GPIO_Pin);
+
+	// Back_Left_Motor	Motor3_Front
+	GPIO_Pin.pinNumber = Motor3_Front;
+	MCAL_GPIO_Init(GPIOB,&GPIO_Pin);
+
+	// Back_Left_Motor	Motor3_Back	
+	GPIO_Pin.pinNumber = Motor3_Back;
+	MCAL_GPIO_Init(GPIOB,&GPIO_Pin);
+
+	// Back_Right_Motor	Motor4_Front
+	GPIO_Pin.pinNumber = Motor4_Front;
+	MCAL_GPIO_Init(GPIOB,&GPIO_Pin);
+
+	// Back_Right_Motor	Motor4_Back	
+	GPIO_Pin.pinNumber = Motor4_Back;
+	MCAL_GPIO_Init(GPIOB,&GPIO_Pin);	
+
+}
+
+
 
 void HAL_DC_Motors_init(void)
 {
@@ -32,6 +83,9 @@ void HAL_DC_Motors_init(void)
 
 	// set Channel 4 as an Alternative output with speed 10M
 	MCAL_TIMx_Init(TIM2, &Timer2, Back_Right_Motor);
+
+
+	Set_GPIO_pins();
 }
 
 

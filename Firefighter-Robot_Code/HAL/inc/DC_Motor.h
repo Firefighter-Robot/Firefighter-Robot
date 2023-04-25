@@ -20,6 +20,16 @@
 
 
 
+#define Motor1_Front                                    GPIO_PIN_10  // PORTA                                
+#define Motor1_Back                                     GPIO_PIN_11  // PORTA
+#define Motor2_Front                                    GPIO_PIN_12  // PORTA
+#define Motor2_Back                                     GPIO_PIN_13  // PORTA
+#define Motor3_Front                                    GPIO_PIN_3   // PORTB
+#define Motor3_Back                                     GPIO_PIN_4   // PORTB
+#define Motor4_Front                                    GPIO_PIN_7   // PORTB
+#define Motor4_Back                                     GPIO_PIN_8   // PORTB
+
+
 //Directions
 #define HAL_Car_TurnRight									0
 #define HAL_Car_TurnLeft									1

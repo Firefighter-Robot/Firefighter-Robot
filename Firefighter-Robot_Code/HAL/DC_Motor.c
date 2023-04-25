@@ -13,14 +13,14 @@
 TIMx_config_t Timer2;
 GPIO_Pinconfig_t GPIO_Pin;
 
-Motor1_Front                                    GPIO_PIN_10  // PORTA                                
-Motor1_Back                                     GPIO_PIN_11  // PORTA
-Motor2_Front                                    GPIO_PIN_12  // PORTA
-Motor2_Back                                     GPIO_PIN_13  // PORTA
-Motor3_Front                                    GPIO_PIN_3   // PORTB
-Motor3_Back                                     GPIO_PIN_4   // PORTB
-Motor4_Front                                    GPIO_PIN_7   // PORTB
-Motor4_Back                                     GPIO_PIN_8   // PORTB
+//Motor1_Front                                    GPIO_PIN_10  PORTA                                
+//Motor1_Back                                     GPIO_PIN_11  PORTA
+//Motor2_Front                                    GPIO_PIN_12  PORTA
+//Motor2_Back                                     GPIO_PIN_13  PORTA
+//Motor3_Front                                    GPIO_PIN_3   PORTB
+//Motor3_Back                                     GPIO_PIN_4   PORTB
+//Motor4_Front                                    GPIO_PIN_7   PORTB
+//Motor4_Back                                     GPIO_PIN_8   PORTB
 void Set_GPIO_pins(void)
 {
 	

@@ -24,7 +24,7 @@ GPIO_Pinconfig_t GPIO_Pin;
 void Set_GPIO_pins(void)
 {
 	
-	GPIO_Pin.MODE = GPIO_MODE_OUTPUT_AF_PP;
+	GPIO_Pin.MODE = GPIO_MODE_OUTPUT_PP;
 	GPIO_Pin.GPIO_OUTPUT_Speed = GPIO_speed_10M;
 
 	// Front_Left_Motor    Motor1_Front 

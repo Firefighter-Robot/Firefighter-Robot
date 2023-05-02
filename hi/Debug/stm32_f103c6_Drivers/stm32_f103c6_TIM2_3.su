@@ -1,0 +1,9 @@
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:66:6:MCAL_TIMx_Init	32	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:284:6:MCAL_TIMx_Set_Compare_Value	16	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:321:6:MCAL_TIMx_Set_TOP_Value	16	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:334:6:MCAL_TIMx_DeInit	16	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:343:6:MCAL_TIM4_CAP_Init	16	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:374:7:MCAL_TIM4_CAP_Get_High	16	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:398:7:MCAL_TIM4_CAP_Get_Low	8	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:420:10:MCAL_TIM4_CAP_Get_Freq	24	static
+../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c:427:10:MCAL_TIM4_CAP_Get_Duty_Cycle	24	static

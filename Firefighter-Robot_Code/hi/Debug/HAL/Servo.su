@@ -1,3 +1,0 @@
-../HAL/Servo.c:11:6:Servo_Init	32	static
-../HAL/Servo.c:24:6:My_Servo	24	static
-../HAL/Servo.c:32:6:Servo_DInit	4	static

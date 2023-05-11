@@ -1,6 +1,0 @@
-../HAL/LCD.c:16:6:LCD_init	16	static
-../HAL/LCD.c:127:6:LCD_cmd	16	static
-../HAL/LCD.c:156:6:lcd_Clear	8	static
-../HAL/LCD.c:163:6:GOTO_XY	16	static
-../HAL/LCD.c:177:6:LCD_Character	16	static
-../HAL/LCD.c:207:6:LCD_String	24	static

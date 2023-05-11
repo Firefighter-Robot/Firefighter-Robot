@@ -1,0 +1,4 @@
+../stm32_f103c6_Drivers/stm32_f103c6_ADC.c:21:6:MCAL_ADC_Init	16	static
+../stm32_f103c6_Drivers/stm32_f103c6_ADC.c:78:10:MCAL_ADC_Read	24	static
+../stm32_f103c6_Drivers/stm32_f103c6_ADC.c:98:6:MCAL_ADC_GPIO_SetPins	48	static
+../stm32_f103c6_Drivers/stm32_f103c6_ADC.c:165:6:ADC1_2_IRQHandler	8	static

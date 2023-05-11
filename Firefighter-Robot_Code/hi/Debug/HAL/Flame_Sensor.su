@@ -1,0 +1,8 @@
+../HAL/Flame_Sensor.c:6:6:BIRG	4	static
+../HAL/Flame_Sensor.c:19:6:HAL_Flame_init	8	static
+../HAL/Flame_Sensor.c:62:5:Flame_Frontmid_Read	8	static
+../HAL/Flame_Sensor.c:66:5:Flame_FrontRight_Read	8	static
+../HAL/Flame_Sensor.c:70:5:Flame_FrontLeft_Read	8	static
+../HAL/Flame_Sensor.c:74:5:Flame_Back_Read	8	static
+../HAL/Flame_Sensor.c:78:5:Flame_Right_Read	8	static
+../HAL/Flame_Sensor.c:82:5:Flame_Left_Read	8	static

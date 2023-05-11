@@ -1,0 +1,3 @@
+../HAL/EEPROM.c:10:6:EEPROM_Init	40	static
+../HAL/EEPROM.c:22:15:EEPROM_Write_Data	296	static
+../HAL/EEPROM.c:39:15:EEPROM_Read_Data	40	static

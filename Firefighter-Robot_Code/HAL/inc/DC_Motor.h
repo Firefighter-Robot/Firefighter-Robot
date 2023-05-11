@@ -20,11 +20,11 @@
 
 
 // Front_Left_Motor
-#define Motor1_Front                                    GPIO_PIN_10  // PORTA                                
-#define Motor1_Back                                     GPIO_PIN_11  // PORTA
+#define Motor1_Front                                    GPIO_PIN_9  // PORTA
+#define Motor1_Back                                     GPIO_PIN_10  // PORTA
 //Front_Right_Motor
-#define Motor2_Front                                    GPIO_PIN_12  // PORTA
-#define Motor2_Back                                     GPIO_PIN_13  // PORTA
+#define Motor2_Front                                    GPIO_PIN_11  // PORTA
+#define Motor2_Back                                     GPIO_PIN_12  // PORTA
 //Back_Left_Motor
 #define Motor3_Front                                    GPIO_PIN_3   // PORTB
 #define Motor3_Back                                     GPIO_PIN_4   // PORTB

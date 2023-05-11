@@ -31,7 +31,7 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Firefighter-Robot_Code.elf \
+Firefighter-Robot_Code.axf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
@@ -44,11 +44,11 @@ Firefighter-Robot_Code.bin \
 
 
 # All Target
-all: Firefighter-Robot_Code.elf secondary-outputs
+all: Firefighter-Robot_Code.axf secondary-outputs
 
 # Tool invocations
-Firefighter-Robot_Code.elf: $(OBJS) $(USER_OBJS) F:\GitHub\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld
-	arm-none-eabi-gcc -o "Firefighter-Robot_Code.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"F:\GitHub\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Firefighter-Robot_Code.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Firefighter-Robot_Code.axf: $(OBJS) $(USER_OBJS) D:\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld
+	arm-none-eabi-gcc  -gdwarf-2 -o "Firefighter-Robot_Code.axf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Firefighter-Robot_Code.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

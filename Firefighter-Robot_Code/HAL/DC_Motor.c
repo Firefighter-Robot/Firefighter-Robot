@@ -24,7 +24,7 @@ GPIO_Pinconfig_t GPIO_Pin;
 void Set_GPIO_pins(void)
 {
 	
-	GPIO_Pin.MODE = GPIO_MODE_OUTPUT_PP;
+	GPIO_Pin.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
 	GPIO_Pin.GPIO_OUTPUT_Speed = GPIO_speed_10M;
 
 	// Front_Left_Motor    Motor1_Front 
@@ -69,8 +69,8 @@ void HAL_DC_Motors_init(void)
 	Timer2.COUNT_MODE = TIMx_COUNT_MODE_UP;
 	Timer2.Prescalers =7;      // 1M
 	// init 4 Channels with 0 duty cycle
-	Timer2.TopValue = Top_Value;
-	Timer2.CompareValue = Top_Value;
+	Timer2.TopValue = 20000;
+	Timer2.CompareValue = 10000;
 
 	// set Channel 1 as an Alternative output with speed 10M
 	MCAL_TIMx_Init(TIM2, &Timer2, Front_Left_Motor);
@@ -193,10 +193,10 @@ void Car_Move(uint16_t speed , char distance)
 	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(speed),Back_Right_Motor);
 
 	// by iteration set delay to specific distance
-	delay_ms(2000);
+	//delay_ms(2000);
 
 	// stop the movement
-	Car_Stop_Moving();
+	//Car_Stop_Moving();
 
 }
 void Car_Stop_Moving(void)

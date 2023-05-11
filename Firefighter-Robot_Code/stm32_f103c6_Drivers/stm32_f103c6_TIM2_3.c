@@ -240,77 +240,72 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 	case CH1 :
 		{
 			TIMx->CCER|=1<<0;
-			//set  Compare value
-			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH1);
+			//set init Compare value 10000
+			TIMx->CCR1 = 10000;
 			break;
 		}
 	case CH2 :
 		{
-			TIMx->CCER|=3<<4;
-			//set  Compare value
-			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH2);
+			TIMx->CCER|=1<<4;
+			//set init Compare value 10000
+			TIMx->CCR2 = 10000;
 			break;
 		}
 	case CH3 :
 		{
 			TIMx->CCER|=1<<8;
-			//set  Compare value
-			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH3);
+			//set init Compare value 10000
+			TIMx->CCR3 = 10000;
 			break;
 		}
 	case CH4 :
 		{
 			TIMx->CCER|=1<<12;
-			//set  Compare value
-			MCAL_TIMx_Set_Compare_Value(TIMx,TIMx_Config->CompareValue,CH4);
+			//set init Compare value 10000
+			TIMx->CCR4 = 10000;
 			break;
 		}
 	}
 	// set Prescalers
 	TIMx->PSC = TIMx_Config->Prescalers;
-	//set top value 
-	MCAL_TIMx_Set_TOP_Value(TIMx ,TIMx_Config->TopValue);
+	//set init top value 20000
+	TIMx->ARR = 20000;
 }
 
 
 
 void MCAL_TIM4_CAP_Init(void)
 {
+	TIM3->CR1=0b10000001;
 	//set pin capture input channel 1
 	GPIO_Pinconfig_t pinconfig ;
 	pinconfig.GPIO_MODE=GPIO_MODE_INPUT_FLO;
 	pinconfig.pinNumber=GPIO_PIN_6;
-	MCAL_GPIO_Init(GPIOB, &pinconfig);
+	MCAL_GPIO_Init(GPIOA, &pinconfig);
 	//set Prescalers 7+1=8 TIM4 Clock=8mhz/8=1mh
-	TIM4->PSC=7;
+	TIM3->PSC=7;
 	//set top value
-	TIM4->ARR=0XFFFF;
+	TIM3->ARR=0XFFFF;
 	//CC1 channel is configured as input, IC1 is mapped on TI1
-	TIM4->CCMR1 =0x31;
+	TIM3->CCMR1 =0x31;
 	// Enable capture on CC1
-	TIM4->CCER |= (1<<0);
+	TIM3->CCER |= (1<<0);
 }
 
 
 float MCAL_TIM4_CAP_Get_High(void)
 {
-	// enable counter
-	TIM4->CR1=1;
-	//Set CAP at raising edge
-	TIM4->CCER &=~(1<<1);
-	//wait until raising edge
-	while(!(TIM4->SR &(1<<1)));
-	TIM4->SR=0;
-	//reset counter
-	TIM4->CNT=0;
-	//Set CAP at falling edge
-	TIM4->CCER |=1<<1;
-	//wait until falling edge
-	while(!(TIM4->SR &(1<<1)));
-	TIM4->SR=0;
-	// disable counter
-	TIM4->CR1=0;
-	return ((1.0/1000000)*TIM4->CCR1);
+	float dis=0;
+	TIM3->CCER &=~(1<<1);
+	while(!(TIM3->SR &(1<<1)));
+	TIM3->EGR |=1<<0;
+	TIM3->SR=0;
+	TIM3->CCER |=1<<1;
+	while(!(TIM3->SR &(1<<1)));
+	TIM3->SR=0;
+	TIM3->CCER &=~(1<<1);
+	dis=TIM3->CCR1;
+	return dis ;
 }
 
 float MCAL_TIM4_CAP_Get_Low(void)

@@ -1,9 +1,9 @@
 stm32_f103c6_TIM2_3.c:66:6:MCAL_TIMx_Init	32	static
 stm32_f103c6_TIM2_3.c:277:6:MCAL_TIM4_CAP_Init	16	static
-stm32_f103c6_TIM2_3.c:295:7:MCAL_TIM4_CAP_Get_High	16	static
-stm32_f103c6_TIM2_3.c:316:7:MCAL_TIM4_CAP_Get_Low	16	static
-stm32_f103c6_TIM2_3.c:338:10:MCAL_TIM4_CAP_Get_Freq	24	static
-stm32_f103c6_TIM2_3.c:345:10:MCAL_TIM4_CAP_Get_Duty_Cycle	24	static
-stm32_f103c6_TIM2_3.c:361:6:MCAL_TIMx_Set_Compare_Value	16	static
-stm32_f103c6_TIM2_3.c:398:6:MCAL_TIMx_Set_TOP_Value	16	static
-stm32_f103c6_TIM2_3.c:411:6:MCAL_TIMx_DeInit	16	static
+stm32_f103c6_TIM2_3.c:296:7:MCAL_TIM4_CAP_Get_High	16	static
+stm32_f103c6_TIM2_3.c:311:7:MCAL_TIM4_CAP_Get_Low	16	static
+stm32_f103c6_TIM2_3.c:333:10:MCAL_TIM4_CAP_Get_Freq	24	static
+stm32_f103c6_TIM2_3.c:340:10:MCAL_TIM4_CAP_Get_Duty_Cycle	24	static
+stm32_f103c6_TIM2_3.c:356:6:MCAL_TIMx_Set_Compare_Value	16	static
+stm32_f103c6_TIM2_3.c:393:6:MCAL_TIMx_Set_TOP_Value	16	static
+stm32_f103c6_TIM2_3.c:406:6:MCAL_TIMx_DeInit	16	static

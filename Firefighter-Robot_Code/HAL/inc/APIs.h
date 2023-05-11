@@ -125,7 +125,7 @@ extern int Flame_Left_Read();
 
 
 
-extern uint8_t Ultrasnic_Read();
+extern float Ultrasnic_Read();
     
 extern void Car_Routation(char angle , char direction); //routate the car
 extern void Car_Move(uint16_t speed , char distance); //move foraward only

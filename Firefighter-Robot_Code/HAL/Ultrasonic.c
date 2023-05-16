@@ -13,7 +13,7 @@ GPIO_Pinconfig_t GPIO_Pin;
 
 void HAL_Ultrasonic_init(void)
 {
-	MCAL_TIM3_CAP_Init();
+	MCAL_TIM4_CAP_Init();
 	// set trigger as an output
 	GPIO_Pin.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
 	GPIO_Pin.GPIO_OUTPUT_Speed = GPIO_speed_10M;

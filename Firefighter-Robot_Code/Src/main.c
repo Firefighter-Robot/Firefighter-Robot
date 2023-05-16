@@ -36,8 +36,41 @@ void Clock_INIT(void)
 int main (){
 	Clock_INIT();
 
+	TIMx_config_t  TIMx_Config;
+	TIMx_Config.COUNT_MODE=TIMx_COUNT_MODE_UP;
+	TIMx_Config.MODE=TIMx_MODE_PWM2;
+	TIMx_Config.Prescalers=7;  // timer clock 1mhz
+	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH1);
+	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
+	MCAL_TIMx_Set_TOP_Value(TIM2, 20000);
+	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH2);
+	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
+	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH3);
+	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH3);
+	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH4);
+	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH4);
 	while(1)
 	{
+		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH1);
+		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH2);
+		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH3);
+		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH4);
+		delay_ms(100);
+		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH1);
+		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH2);
+		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH3);
+		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH4);
+		delay_ms(100);
+		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH1);
+		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH2);
+		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH3);
+		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH4);
+		delay_ms(100);
+		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH1);
+		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH2);
+		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH3);
+		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH4);
+		delay_ms(100);
 	}
 	return 0;
 }

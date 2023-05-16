@@ -51,6 +51,7 @@ uint32_t MCAL_Get_SYSCLC_FREQ(void)
 		return HSE_oscillator_clock ;
 		break;
 	}
+	return HSI_oscillator_clock ;
 }
 uint32_t MCAL_Get_HCLC_FREQ(void)
 {

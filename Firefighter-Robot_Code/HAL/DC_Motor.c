@@ -172,18 +172,18 @@ void Car_Routation(char angle , char direction)
 
 void Car_Move(uint16_t speed , char distance)
 {
-	// motor Front_Left_Motor move forward 
-	MCAL_GPIO_WritePin(GPIOA,Motor1_Front,GPIO_PIN_SET);
-	MCAL_GPIO_WritePin(GPIOA,Motor1_Back,GPIO_PIN_RESET);
-	// motor Front_Right_Motor move forward 
-	MCAL_GPIO_WritePin(GPIOA,Motor2_Front,GPIO_PIN_SET);
-	MCAL_GPIO_WritePin(GPIOA,Motor2_Back,GPIO_PIN_RESET);
-	// motor Back_Left_Motor move forward 
-	MCAL_GPIO_WritePin(GPIOB,Motor3_Front,GPIO_PIN_SET);
-	MCAL_GPIO_WritePin(GPIOB,Motor3_Back,GPIO_PIN_RESET);
-	// motor Back_Right_Motor move forward 
-	MCAL_GPIO_WritePin(GPIOB,Motor4_Front,GPIO_PIN_SET);
-	MCAL_GPIO_WritePin(GPIOB,Motor4_Back,GPIO_PIN_RESET);
+//	// motor Front_Left_Motor move forward
+//	MCAL_GPIO_WritePin(GPIOA,Motor1_Front,GPIO_PIN_SET);
+//	MCAL_GPIO_WritePin(GPIOA,Motor1_Back,GPIO_PIN_RESET);
+//	// motor Front_Right_Motor move forward
+//	MCAL_GPIO_WritePin(GPIOA,Motor2_Front,GPIO_PIN_SET);
+//	MCAL_GPIO_WritePin(GPIOA,Motor2_Back,GPIO_PIN_RESET);
+//	// motor Back_Left_Motor move forward
+//	MCAL_GPIO_WritePin(GPIOB,Motor3_Front,GPIO_PIN_SET);
+//	MCAL_GPIO_WritePin(GPIOB,Motor3_Back,GPIO_PIN_RESET);
+//	// motor Back_Right_Motor move forward
+//	MCAL_GPIO_WritePin(GPIOB,Motor4_Front,GPIO_PIN_SET);
+//	MCAL_GPIO_WritePin(GPIOB,Motor4_Back,GPIO_PIN_RESET);
 
 
 	// by iteration set duty cycle to specific speed

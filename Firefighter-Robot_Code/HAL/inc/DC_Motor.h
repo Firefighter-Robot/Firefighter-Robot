@@ -20,8 +20,8 @@
 
 
 // Front_Left_Motor
-#define Motor1_Front                                    GPIO_PIN_9  // PORTA
-#define Motor1_Back                                     GPIO_PIN_10  // PORTA
+#define Motor1_Front                                    GPIO_PIN_10  // PORTA
+#define Motor1_Back                                     GPIO_PIN_9  // PORTA
 //Front_Right_Motor
 #define Motor2_Front                                    GPIO_PIN_11  // PORTA
 #define Motor2_Back                                     GPIO_PIN_12  // PORTA
@@ -38,7 +38,7 @@
 #define HAL_Car_TurnLeft									1
 
 
-#define Top_Value										(uint16_t)10000
+#define Top_Value										(uint16_t)20000
 
 // set specific duty cycle
 #define _Step_5_Duty_Cycle								(uint16_t)(Top_Value / 20)

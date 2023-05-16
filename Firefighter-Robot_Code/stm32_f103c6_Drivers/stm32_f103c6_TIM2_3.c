@@ -68,6 +68,7 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 	GPIO_Pinconfig_t pinconfig ;
 	// Enable counter and Disable update event
 	TIMx->CR1=0b10000001;
+//	TIMx->EGR |=1<<0;
 	//set delay mode or PWM mode
 	if(TIMx_Config->MODE != TIMx_MODE_Delay)
 	{
@@ -235,32 +236,33 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 		}
 	}
 	//output polarity and  output enable
+	TIMx->ARR = 20000;
 	switch(Chan)
 	{
 	case CH1 :
 		{
-			TIMx->CCER|=1<<0;
+			TIMx->CCER|=3<<0;
 			//set init Compare value 10000
 			TIMx->CCR1 = 10000;
 			break;
 		}
 	case CH2 :
 		{
-			TIMx->CCER|=1<<4;
+			TIMx->CCER|=3<<4;
 			//set init Compare value 10000
 			TIMx->CCR2 = 10000;
 			break;
 		}
 	case CH3 :
 		{
-			TIMx->CCER|=1<<8;
+			TIMx->CCER|=3<<8;
 			//set init Compare value 10000
 			TIMx->CCR3 = 10000;
 			break;
 		}
 	case CH4 :
 		{
-			TIMx->CCER|=1<<12;
+			TIMx->CCER|=3<<12;
 			//set init Compare value 10000
 			TIMx->CCR4 = 10000;
 			break;
@@ -269,12 +271,14 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 	// set Prescalers
 	TIMx->PSC = TIMx_Config->Prescalers;
 	//set init top value 20000
-	TIMx->ARR = 20000;
+
+
+	//TIM2->EGR |=1<<0;
 }
 
 
 
-void MCAL_TIM4_CAP_Init(void)
+void MCAL_TIM3_CAP_Init(void)
 {
 	TIM3->CR1=0b10000001;
 	//set pin capture input channel 1
@@ -290,10 +294,11 @@ void MCAL_TIM4_CAP_Init(void)
 	TIM3->CCMR1 =0x31;
 	// Enable capture on CC1
 	TIM3->CCER |= (1<<0);
+
 }
 
 
-float MCAL_TIM4_CAP_Get_High(void)
+float MCAL_TIM3_CAP_Get_High(void)
 {
 	float dis=0;
 	TIM3->CCER &=~(1<<1);
@@ -308,7 +313,7 @@ float MCAL_TIM4_CAP_Get_High(void)
 	return dis ;
 }
 
-float MCAL_TIM4_CAP_Get_Low(void)
+float MCAL_TIM3_CAP_Get_Low(void)
 {
 	// enable counter
 	TIM4->CR1=1;
@@ -330,17 +335,17 @@ float MCAL_TIM4_CAP_Get_Low(void)
 }
 
 
-uint16_t MCAL_TIM4_CAP_Get_Freq(void)
+uint16_t MCAL_TIM3_CAP_Get_Freq(void)
 {
 	uint16_t freq;
-	freq=1/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
+	freq=1/(MCAL_TIM3_CAP_Get_Low()+MCAL_TIM3_CAP_Get_High());
 	return freq;
 }
 
-uint16_t MCAL_TIM4_CAP_Get_Duty_Cycle(void)
+uint16_t MCAL_TIM3_CAP_Get_Duty_Cycle(void)
 {
 	uint16_t Duty;
-	Duty=MCAL_TIM4_CAP_Get_High()/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
+	Duty=MCAL_TIM3_CAP_Get_High()/(MCAL_TIM3_CAP_Get_Low()+MCAL_TIM3_CAP_Get_High());
 	return Duty;
 }
 
@@ -355,7 +360,6 @@ uint16_t MCAL_TIM4_CAP_Get_Duty_Cycle(void)
 */
 void MCAL_TIMx_Set_Compare_Value( TIMx_TypeDef* TIMx  , uint16_t Compare_Value , channel Chan )
 {
-
 	switch(Chan)
 	{
 	case CH1 :
@@ -379,7 +383,9 @@ void MCAL_TIMx_Set_Compare_Value( TIMx_TypeDef* TIMx  , uint16_t Compare_Value ,
 			break;
 		}
 	}
-	TIM3->EGR |=1<<0;
+	TIM2->EGR |=1<<0;
+
+
 }
 
 /**================================================================

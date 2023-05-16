@@ -94,11 +94,11 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 void MCAL_TIMx_Set_Compare_Value( TIMx_TypeDef* TIMx  , uint16_t Compare_Value , channel Chan ) ;
 void MCAL_TIMx_Set_TOP_Value( TIMx_TypeDef* TIMx  , uint16_t TOP_Value ) ;
 void MCAL_TIMx_DeInit( TIMx_TypeDef* TIMx );
-void MCAL_TIM4_CAP_Init(void);
-float MCAL_TIM4_CAP_Get_High(void);
-float MCAL_TIM4_CAP_Get_Low(void);
-uint16_t MCAL_TIM4_CAP_Get_Freq(void);
-uint16_t MCAL_TIM4_CAP_Get_Duty_Cycle(void);
+void MCAL_TIM3_CAP_Init(void);
+float MCAL_TIM3_CAP_Get_High(void);
+float MCAL_TIM3_CAP_Get_Low(void);
+uint16_t MCAL_TIM3_CAP_Get_Freq(void);
+uint16_t MCAL_TIM3_CAP_Get_Duty_Cycle(void);
 //===============================================================================
 
 #endif /* INC_STM32_F103C6_TIM2_3_H_ */

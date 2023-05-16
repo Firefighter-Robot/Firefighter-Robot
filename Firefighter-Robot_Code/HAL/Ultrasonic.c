@@ -8,7 +8,7 @@
 #include "Ultrasonic.h"
 
 
-GPIO_Pinconfig_t GPIO_Pin;
+static GPIO_Pinconfig_t GPIO_Pin;
 
 
 void HAL_Ultrasonic_init(void)
@@ -33,7 +33,7 @@ float Ultrasnic_Read(void)
 	// The speed of sound in free space is 340 m/s = 34000 cm/s
 	// the speed = Distance / time
 	// the Distance = speed * time = 34000 * time (the time of pulse on ECHO pin)
-	Distance = (MCAL_TIM4_CAP_Get_High()/58.3);
+	Distance = (MCAL_TIM3_CAP_Get_High()/58.3);
 	return Distance;
 
 }

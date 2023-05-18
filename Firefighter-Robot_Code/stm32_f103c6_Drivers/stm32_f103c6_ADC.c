@@ -58,7 +58,6 @@ void MCAL_ADC_Init( ADC_config_t* ADC_Config )
 		ADC1->CR1 &=ADC_IRQ_ENABLE_Disable;
 		NVIC_IRQ18_ADC_Disable();
 	}
-	ADC1->CR2 |=1<<0;
 }
 
 
@@ -76,7 +75,13 @@ uint16_t MCAL_ADC_Read( enum NUM_CH CH )
 	ADC1->SQR3=CH;
 	//Enable adc
 	ADC1->CR2 |=1<<0;
+	ADC1->CR2 |=1<<0;
+	//Start conversion
+	ADC1->CR2 |=1<<22;
+	while(!(ADC1->SR & (1<<4)));
+	ADC1->SR &=~(1<<4);
 	while(!(ADC1->SR & (1<<1)));
 	data=ADC1->DR;
+	ADC1->CR2 &=~(1<<0);
 	return data;
 }

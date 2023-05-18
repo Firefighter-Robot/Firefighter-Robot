@@ -18,7 +18,7 @@
 
 
 void HAL_Ultrasonic_init(void);
-float Ultrasnic_Read(void);
+uint8_t Ultrasnic_Read(void);
 
 
 

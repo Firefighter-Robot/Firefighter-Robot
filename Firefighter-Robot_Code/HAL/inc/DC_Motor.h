@@ -10,6 +10,7 @@
 
 
 #include "stm32_f103c6_TIM2_3.h"
+#include "stm32_f103c6_GPIO.h"
 #include "delay.h"
 
 
@@ -20,8 +21,8 @@
 
 
 // Front_Left_Motor
-#define Motor1_Front                                    GPIO_PIN_10  // PORTA
-#define Motor1_Back                                     GPIO_PIN_9  // PORTA
+#define Motor1_Front                                    GPIO_PIN_9  // PORTA
+#define Motor1_Back                                     GPIO_PIN_10  // PORTA
 //Front_Right_Motor
 #define Motor2_Front                                    GPIO_PIN_11  // PORTA
 #define Motor2_Back                                     GPIO_PIN_12  // PORTA

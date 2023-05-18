@@ -16,9 +16,9 @@ void Servo_Init(void)
 	TIMx_Config.COUNT_MODE=TIMx_COUNT_MODE_UP;
 	TIMx_Config.MODE=TIMx_MODE_PWM2;
 	TIMx_Config.Prescalers=7;  // timer clock 1mhz
-	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH2);
-	MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH2);
-	MCAL_TIMx_Set_TOP_Value(TIM2, 20000);//Frequency 50 hz
+	MCAL_TIMx_Init(TIM3, &TIMx_Config , CH2);
+	MCAL_TIMx_Set_Compare_Value(TIM3,0,CH2);
+	MCAL_TIMx_Set_TOP_Value(TIM3, top);//Frequency 50 hz
 }
 
 void My_Servo(uint8_t angle)

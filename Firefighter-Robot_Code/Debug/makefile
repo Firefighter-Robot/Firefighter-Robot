@@ -53,21 +53,6 @@ default.size.stdout \
 OBJDUMP_LIST += \
 Firefighter-Robot_Code.list \
 
-OBJCOPY_HEX += \
-Firefighter-Robot_Code.hex \
-
-OBJCOPY_BIN += \
-Firefighter-Robot_Code.bin \
-
-OBJCOPY_VERILOG += \
-Firefighter-Robot_Code.verilog \
-
-OBJCOPY_SREC += \
-Firefighter-Robot_Code.srec \
-
-OBJCOPY_SYMBOLSREC += \
-Firefighter-Robot_Code.symbolsrec \
-
 
 # All Target
 all: main-build
@@ -77,7 +62,7 @@ main-build: Firefighter-Robot_Code.axf secondary-outputs
 
 # Tool invocations
 Firefighter-Robot_Code.axf Firefighter-Robot_Code.map: $(OBJS) $(USER_OBJS) D:\FireFighterRobot\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc  -gdwarf-2 -o "Firefighter-Robot_Code.axf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\FireFighterRobot\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Firefighter-Robot_Code.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Firefighter-Robot_Code.axf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\FireFighterRobot\Firefighter-Robot\Firefighter-Robot_Code\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Firefighter-Robot_Code.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -91,37 +76,12 @@ Firefighter-Robot_Code.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOO
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Firefighter-Robot_Code.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "Firefighter-Robot_Code.hex"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-Firefighter-Robot_Code.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "Firefighter-Robot_Code.bin"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-Firefighter-Robot_Code.verilog: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O verilog $(EXECUTABLES) "Firefighter-Robot_Code.verilog"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-Firefighter-Robot_Code.srec: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O srec $(EXECUTABLES) "Firefighter-Robot_Code.srec"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-Firefighter-Robot_Code.symbolsrec: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O symbolsrec $(EXECUTABLES) "Firefighter-Robot_Code.symbolsrec"
-	@echo 'Finished building: $@'
-	@echo ' '
-
 # Other Targets
 clean:
-	-$(RM) Firefighter-Robot_Code.axf Firefighter-Robot_Code.bin Firefighter-Robot_Code.hex Firefighter-Robot_Code.list Firefighter-Robot_Code.map Firefighter-Robot_Code.srec Firefighter-Robot_Code.symbolsrec Firefighter-Robot_Code.verilog default.size.stdout
+	-$(RM) Firefighter-Robot_Code.axf Firefighter-Robot_Code.list Firefighter-Robot_Code.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN) $(OBJCOPY_VERILOG) $(OBJCOPY_SREC) $(OBJCOPY_SYMBOLSREC)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

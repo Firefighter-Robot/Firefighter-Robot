@@ -28,7 +28,7 @@ void LCD_init(void)
 	//PORTA Pin0 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=GPIO_PIN_1;
 	//PORTA Pin1 as output_pull_push
@@ -36,7 +36,7 @@ void LCD_init(void)
 	//PORTA Pin1 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=GPIO_PIN_2;
 	//PORTA Pin2 as output_pull_push
@@ -44,7 +44,7 @@ void LCD_init(void)
 	//PORTA Pin2 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=GPIO_PIN_3;
 	//PORTA Pin3 as output_pull_push
@@ -52,7 +52,7 @@ void LCD_init(void)
 	//PORTA Pin3 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=GPIO_PIN_4;
 	//PORTA Pin4 as output_pull_push
@@ -60,7 +60,7 @@ void LCD_init(void)
 	//PORTA Pin4 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=GPIO_PIN_5;
 	//PORTA Pin5 as output_pull_push
@@ -68,7 +68,7 @@ void LCD_init(void)
 	//PORTA Pin5 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=GPIO_PIN_6;
 	//PORTA Pin6 as output_pull_push
@@ -76,7 +76,7 @@ void LCD_init(void)
 	//PORTA Pin6 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=GPIO_PIN_7;
 	//PORTA Pin7 as output_pull_push
@@ -84,7 +84,7 @@ void LCD_init(void)
 	//PORTA Pin7 at 10 MHZ
 	pincfg_LCD.GPIO_OUTPUT_Speed=GPIO_speed_10M;
 	//init pin
-	MCAL_GPIO_Init(lcd_Data_Direction,&pincfg_LCD);
+	MCAL_GPIO_Init(GPIOA,&pincfg_LCD);
 
 	pincfg_LCD.pinNumber=rs;
 	//PORTB Pin1 as output_pull_push

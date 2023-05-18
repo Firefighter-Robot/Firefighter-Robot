@@ -15,17 +15,6 @@ C_SRCS += \
 ../stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.c \
 ../stm32_f103c6_Drivers/stm32_f103c6_USART.c 
 
-C_DEPS += \
-./stm32_f103c6_Drivers/delay.d \
-./stm32_f103c6_Drivers/stm32_f103c6_ADC.d \
-./stm32_f103c6_Drivers/stm32_f103c6_EXTI.d \
-./stm32_f103c6_Drivers/stm32_f103c6_GPIO.d \
-./stm32_f103c6_Drivers/stm32_f103c6_I2C.d \
-./stm32_f103c6_Drivers/stm32_f103c6_RCC.d \
-./stm32_f103c6_Drivers/stm32_f103c6_SPI.d \
-./stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.d \
-./stm32_f103c6_Drivers/stm32_f103c6_USART.d 
-
 OBJS += \
 ./stm32_f103c6_Drivers/delay.o \
 ./stm32_f103c6_Drivers/stm32_f103c6_ADC.o \
@@ -37,10 +26,21 @@ OBJS += \
 ./stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.o \
 ./stm32_f103c6_Drivers/stm32_f103c6_USART.o 
 
+C_DEPS += \
+./stm32_f103c6_Drivers/delay.d \
+./stm32_f103c6_Drivers/stm32_f103c6_ADC.d \
+./stm32_f103c6_Drivers/stm32_f103c6_EXTI.d \
+./stm32_f103c6_Drivers/stm32_f103c6_GPIO.d \
+./stm32_f103c6_Drivers/stm32_f103c6_I2C.d \
+./stm32_f103c6_Drivers/stm32_f103c6_RCC.d \
+./stm32_f103c6_Drivers/stm32_f103c6_SPI.d \
+./stm32_f103c6_Drivers/stm32_f103c6_TIM2_3.d \
+./stm32_f103c6_Drivers/stm32_f103c6_USART.d 
+
 
 # Each subdirectory must supply rules for building sources it contributes
 stm32_f103c6_Drivers/%.o stm32_f103c6_Drivers/%.su: ../stm32_f103c6_Drivers/%.c stm32_f103c6_Drivers/subdir.mk
-	arm-none-eabi-gcc  -gdwarf-2 "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F1 -DSTM32F103C6Tx -c -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/HAL/inc" -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/stm32_f103c6_Drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F1 -DSTM32F103C6Tx -c -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/HAL/inc" -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/stm32_f103c6_Drivers/inc" -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/stm32_f103c6_Drivers/inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 
 clean: clean-stm32_f103c6_Drivers
 

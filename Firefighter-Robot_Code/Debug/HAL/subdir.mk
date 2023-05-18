@@ -13,15 +13,6 @@ C_SRCS += \
 ../HAL/Servo.c \
 ../HAL/Ultrasonic.c 
 
-C_DEPS += \
-./HAL/DC_Motor.d \
-./HAL/EEPROM.d \
-./HAL/Flame_Sensor.d \
-./HAL/Keypad.d \
-./HAL/LCD.d \
-./HAL/Servo.d \
-./HAL/Ultrasonic.d 
-
 OBJS += \
 ./HAL/DC_Motor.o \
 ./HAL/EEPROM.o \
@@ -31,10 +22,19 @@ OBJS += \
 ./HAL/Servo.o \
 ./HAL/Ultrasonic.o 
 
+C_DEPS += \
+./HAL/DC_Motor.d \
+./HAL/EEPROM.d \
+./HAL/Flame_Sensor.d \
+./HAL/Keypad.d \
+./HAL/LCD.d \
+./HAL/Servo.d \
+./HAL/Ultrasonic.d 
+
 
 # Each subdirectory must supply rules for building sources it contributes
 HAL/%.o HAL/%.su: ../HAL/%.c HAL/subdir.mk
-	arm-none-eabi-gcc  -gdwarf-2 "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F1 -DSTM32F103C6Tx -c -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/HAL/inc" -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/stm32_f103c6_Drivers/inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F1 -DSTM32F103C6Tx -c -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/HAL/inc" -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/stm32_f103c6_Drivers/inc" -I"D:/FireFighterRobot/Firefighter-Robot/Firefighter-Robot_Code/stm32_f103c6_Drivers/inc" -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 
 clean: clean-HAL
 

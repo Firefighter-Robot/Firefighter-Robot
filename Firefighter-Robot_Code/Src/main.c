@@ -35,42 +35,69 @@ void Clock_INIT(void)
 
 int main (){
 	Clock_INIT();
+	GPIO_Pinconfig_t pinconfig ;
+	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_OD  ;
+	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_2M ;
+	pinconfig.pinNumber = GPIO_PIN_13 ;
+	MCAL_GPIO_Init(GPIOC, &pinconfig) ;
+
+	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
+	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
+	pinconfig.pinNumber = GPIO_PIN_9 ;
+	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
+	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, SET);
+
+	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
+	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
+	pinconfig.pinNumber = GPIO_PIN_8 ;
+	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
+	MCAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, RESET);
 
 	TIMx_config_t  TIMx_Config;
 	TIMx_Config.COUNT_MODE=TIMx_COUNT_MODE_UP;
 	TIMx_Config.MODE=TIMx_MODE_PWM2;
 	TIMx_Config.Prescalers=7;  // timer clock 1mhz
 	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH1);
-	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
+	MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH2);
 	MCAL_TIMx_Set_TOP_Value(TIM2, 20000);
 	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH2);
-	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
+	MCAL_TIMx_Set_Compare_Value(TIM2,2000,CH2);
 	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH3);
-	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH3);
+	MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH3);
 	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH4);
-	MCAL_TIMx_Set_Compare_Value(TIM2,0,CH4);
+	MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH4);
+
 	while(1)
 	{
-		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH2);
+		MCAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		delay_ms(1000);
+
+		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH1);
+		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH2);
+		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH3);
+		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH4);
+		delay_ms(2000);
+		MCAL_TIMx_Set_Compare_Value(TIM2,1000,CH1);
+		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH2);
 		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH3);
 		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH4);
-		delay_ms(100);
-		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH1);
+		delay_ms(2000);
+		MCAL_TIMx_Set_Compare_Value(TIM2,3000,CH1);
 		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH2);
 		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH3);
 		MCAL_TIMx_Set_Compare_Value(TIM2,10000,CH4);
-		delay_ms(100);
-		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH2);
+		delay_ms(2000);
+		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH1);
+		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH2);
 		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH3);
 		MCAL_TIMx_Set_Compare_Value(TIM2,15000,CH4);
-		delay_ms(100);
+		delay_ms(2000);
 		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH2);
+		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
 		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH3);
 		MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH4);
-		delay_ms(100);
+		delay_ms(2000);
+
 	}
 	return 0;
 }

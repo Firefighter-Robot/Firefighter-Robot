@@ -379,7 +379,7 @@ void MCAL_TIMx_Set_Compare_Value( TIMx_TypeDef* TIMx  , uint16_t Compare_Value ,
 			break;
 		}
 	}
-	TIM3->EGR |=1<<0;
+	TIMx->EGR |=1<<0;
 }
 
 /**================================================================

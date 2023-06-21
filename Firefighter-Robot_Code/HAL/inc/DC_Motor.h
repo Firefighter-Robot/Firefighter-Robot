@@ -92,8 +92,9 @@
 
 
 void HAL_DC_Motors_init(void);
-void Car_Routation(char angle , char direction);
-void Car_Move(uint16_t speed , char distance);
+void Car_Routation(uint8_t angle , uint8_t direction);
+void Car_Move(uint8_t speed , uint8_t distance);
+void U_Turn(uint8_t speed);
 void Car_Stop_Moving(void);
 
 #endif /* INC_DC_MOTOR_H_ */

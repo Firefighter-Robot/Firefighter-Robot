@@ -125,7 +125,7 @@ void HAL_DC_Motors_init(void)
 
 
 
-void Car_Routation(char angle , char direction)
+void Car_Routation(uint8_t angle , uint8_t direction)
 {
 
 	// todo equation to calculate the duty cycle from angle
@@ -232,7 +232,7 @@ void Car_Routation(char angle , char direction)
 
 
 
-void Car_Move(uint16_t speed , char distance)
+void Car_Move(uint8_t speed , uint8_t distance)
 {
 #ifdef FULL_Controle_4_Channel
 	// motor Front_Left_Motor move forward 
@@ -281,6 +281,25 @@ void Car_Move(uint16_t speed , char distance)
 
 
 }
+
+void U_Turn(uint8_t speed)
+{
+	Car_Move(speed,0);
+
+	MCAL_GPIO_WritePin(GPIOA,Right_Motors_Front,GPIO_PIN_SET);
+	MCAL_GPIO_WritePin(GPIOA,Right_Motors_Back,GPIO_PIN_RESET);
+
+	MCAL_GPIO_WritePin(GPIOB,Left_Motors_Back,GPIO_PIN_SET);
+	MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_RESET);
+
+	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(speed),Left_Motors);
+	MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(speed),Right_Motors);
+	// by iteration
+	delay_ms(2000);
+
+	Car_Move(speed,0); // 0 is the distance we will set it in the delay function
+}
+
 void Car_Stop_Moving(void)
 {
 #ifdef FULL_Controle_4_Channel

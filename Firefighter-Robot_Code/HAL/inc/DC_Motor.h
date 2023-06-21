@@ -13,12 +13,30 @@
 #include "delay.h"
 
 
+//#define FULL_Controle_4_Channel
+#define HALF_Controle_2_Channel
+
+// 2 Channel
+#define Left_Motors 									CH1
+#define Right_Motors		 							CH2
+
+// 4 Channel
 #define Front_Left_Motor 								CH1
 #define Front_Right_Motor 								CH2
 #define Back_Left_Motor 								CH3
 #define Back_Right_Motor 								CH4
 
 
+// 2 Channel
+// Left_Motors
+#define Left_Motors_Front                                GPIO_PIN_9  // PORTA
+#define Left_Motors_Back                                 GPIO_PIN_10  // PORTA
+//Right_Motor
+#define Right_Motors_Front                                GPIO_PIN_11  // PORTA
+#define Right_Motors_Back                                 GPIO_PIN_12  // PORTA
+
+
+// 4 Channel
 // Front_Left_Motor
 #define Motor1_Front                                    GPIO_PIN_9  // PORTA
 #define Motor1_Back                                     GPIO_PIN_10  // PORTA
@@ -38,7 +56,7 @@
 #define HAL_Car_TurnLeft									1
 
 
-#define Top_Value										(uint16_t)10000
+#define Top_Value										(uint16_t)20000
 
 // set specific duty cycle
 #define _Step_5_Duty_Cycle								(uint16_t)(Top_Value / 20)

@@ -1,2 +1,8 @@
-main.c:21:6:Clock_INIT	4	static
-main.c:36:5:main	32	static
+../Src/main.c:49:6:Clock_INIT	4	static
+../Src/main.c:67:13:Flame_MaxReading	32	static
+../Src/main.c:102:6:CarAdjustament	16	static
+../Src/main.c:125:6:CarMovements	8	static
+../Src/main.c:138:6:CarAction	16	static
+../Src/main.c:157:6:HAL_Driver_init	8	static
+../Src/main.c:168:6:Object_Handle	8	static
+../Src/main.c:178:5:main	16	static

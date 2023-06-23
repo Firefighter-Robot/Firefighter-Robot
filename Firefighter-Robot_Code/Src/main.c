@@ -18,6 +18,34 @@
 
 #include"APIs.h"
 
+
+#define ULTRA_Threshold         40
+#define Flame_Threshold         40
+#define DISTANCE    100
+
+
+
+// delete this macro when writing Pump driver
+//#define pumb(x)   ;
+
+
+int n = 1;
+
+
+typedef enum Redirection
+{
+
+	Front_mid_en,
+	Front_Left_en,
+	Front_Right_en,
+	Right_en,
+	Left_en,
+	Back_en
+
+}Redirection;
+
+
+
 void Clock_INIT(void)
 {
 	//set on the clock for PORTA
@@ -33,160 +61,168 @@ void Clock_INIT(void)
 	RCC_ADC1_CLK_Enable();
 }
 
-int main (){
-	Clock_INIT();
 
-	GPIO_Pinconfig_t pinconfig ;
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_OD  ;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_2M ;
-	pinconfig.pinNumber = GPIO_PIN_13 ;
-	MCAL_GPIO_Init(GPIOC, &pinconfig) ;
 
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_9 ;
-	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, SET);
 
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_8 ;
-	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);
+Redirection Flame_MaxReading()
+{
+	int FrontMid = Flame_Frontmid_Read() - (int)Flame_Threshold;
+	int FrontRight = Flame_FrontRight_Read() - (int)Flame_Threshold;
+	int FrontLeft = Flame_FrontLeft_Read() - (int)Flame_Threshold;
+	int Back = Flame_Back_Read() - (int)Flame_Threshold;
+	int Right = Flame_Right_Read() - (int)Flame_Threshold;
+	int Left = Flame_Left_Read() - (int)Flame_Threshold;
 
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_7 ;
-	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, SET);
-
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_6 ;
-	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, RESET);
-
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_5 ;
-	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, RESET);
-
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_4 ;
-	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, SET);
-
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_3 ;
-	MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, RESET);
-	pinconfig.GPIO_MODE = GPIO_MODE_OUTPUT_PP;
-	pinconfig.GPIO_OUTPUT_Speed = GPIO_speed_10M ;
-	pinconfig.pinNumber = GPIO_PIN_15;
-	MCAL_GPIO_Init(GPIOB, &pinconfig);
-	MCAL_GPIO_WritePin(GPIOA, GPIO_PIN_15,SET);
-	TIMx_config_t  TIMx_Config;
-	TIMx_Config.COUNT_MODE=TIMx_COUNT_MODE_UP;
-	TIMx_Config.MODE=TIMx_MODE_PWM2;
-	TIMx_Config.Prescalers=7;  // timer clock 1mhz
-	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH1);
-	MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH2);
-	MCAL_TIMx_Set_TOP_Value(TIM2, 20000);
-	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH2);
-	MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH2);
-	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH3);
-	MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH3);
-	MCAL_TIMx_Init(TIM2, &TIMx_Config , CH4);
-	MCAL_TIMx_Set_Compare_Value(TIM2,20000,CH4);
-	pinconfig.GPIO_MODE = GPIO_MODE_Analog;
-	pinconfig.pinNumber = GPIO_PIN_0 ;
-	MCAL_GPIO_Init(GPIOA, &pinconfig) ;
-	/*ADC_config_t ADC_Pin;
-
-	ADC_Pin.MODE=ADC_MODE_Single;
-		ADC_Pin.Data_alignment=ADC_Data_alignment_Right;
-		ADC_Pin.sampling_time=ADC_sampling_time_1_5;
-		ADC_Pin.Channel=Ch0;
-		MCAL_ADC_Init(&ADC_Pin);
-	//MCAL_TIM4_CAP_Init();*/
-	while(1)
+	if ((FrontMid > FrontRight) && (FrontMid > FrontLeft) && (FrontMid > Back) && (FrontMid > Right) && (FrontMid > Left))
 	{
-
-		/*if(MCAL_ADC_Read(Ch0)>200)
-		{
-			MCAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-		}
-		delay_ms(1000);
-
-	}*/
-
-		///	while (Flame_Frontmid_Read() < 3000);
-
-		//MCAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH4);
-		delay_ms(2000);
-		MCAL_TIMx_Set_Compare_Value(TIM2,2000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,1900,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,2000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,2000,CH4);
-		delay_ms(2000);
-		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,4900,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,5000,CH4);
-		delay_ms(2000);
-		MCAL_TIMx_Set_Compare_Value(TIM2,7000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,6900,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,7000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,7000,CH4);
-		delay_ms(2000);
-
-		MCAL_TIMx_Set_Compare_Value(TIM2,8000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,7900,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,8000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,8000,CH4);
-
-		delay_ms(2000);
-
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,4000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,4000,CH4);
-
-		delay_ms(2100);
-
-		MCAL_TIMx_Set_Compare_Value(TIM2,6000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,5900,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,6000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,6000,CH4);
-		delay_ms(4000);
-
-		MCAL_TIMx_Set_Compare_Value(TIM2,8000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,7900,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,8000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,8000,CH4);
-		delay_ms(4000);
-
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,0,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,4000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,4000,CH4);
-		delay_ms(2100);
-
-
-		MCAL_TIMx_Set_Compare_Value(TIM2,6000,CH1);
-		MCAL_TIMx_Set_Compare_Value(TIM2,5900,CH2);
-		MCAL_TIMx_Set_Compare_Value(TIM2,6000,CH3);
-		MCAL_TIMx_Set_Compare_Value(TIM2,6000,CH4);
-		delay_ms(2000);
+		return Front_mid_en;
 	}
+	else if ((FrontRight > FrontLeft) && (FrontRight > Back) && (FrontRight > Right) && (FrontRight > Left))
+	{
+		return Front_Right_en;
+	}
+	else if ((FrontLeft > Back) && (FrontLeft > Right) && (FrontLeft > Left))
+	{
+		return Front_Left_en;
+	}
+	else if ((Back > Right) && (Back > Left))
+	{
+		return Back_en;
+	}
+	else if ((Right > Left))
+	{
+		return Right_en;
+	}
+	else
+	{
+		return Left_en;
+	}
+}
 
+void CarAdjustament (Redirection MaxReading)
+{
+	switch (MaxReading)
+	{
+	case Front_Left_en :
+	case Left_en :
+		//turn left
+		while(Flame_MaxReading() != Front_mid_en)
+		{
+			Car_Rotation_Object(Car_TurnLeft , 50);
+		}
+	case Front_Right_en :
+	case Right_en :
+	case Back_en :
+		//turn right
+		while(Flame_MaxReading() != Front_mid_en)
+		{
+			Car_Rotation_Object(Car_TurnRight , 50);
+		}
+	}
+}
+
+
+void CarMovements()
+{
+	//turn_right -> n * count
+	Car_Move( Car_Speed_70, n * DISTANCE);
+	Car_Routation( Car_TurnRight); // angle 90 -> duty 30 . and delay 800
+	Car_Move( Car_Speed_70, n * DISTANCE);
+	//turn right -> n * count
+	Car_Routation( Car_TurnRight);
+
+	n++;
+
+}
+
+void CarAction ()
+{
+	while(!(Ultrasnic_Read() <= ULTRA_Threshold))
+	{
+		//move forward
+		Car_Move(Car_Speed_70 , distance_step);
+	}
+	//Routate the servo
+	//Servo_RotationAngle(char angle , char dirction);
+	//pumb on
+	while(Flame_Frontmid_Read() >= Flame_Threshold)
+	{
+		pumb(pumb_on);
+	}
+	pumb(pumb_off);
+}
+
+
+
+void HAL_Driver_init(void)
+{
+	HAL_Flame_init();
+	HAL_DC_Motors_init();
+	HAL_Ultrasonic_init();
+	// Servo_Init();
+	//Init_pumb();
+
+}
+
+
+void Object_Handle()
+{
+	while(Ultrasnic_Read() <= ULTRA_Threshold)
+	{
+		Car_Rotation_Object(Car_TurnRight , 450);
+	}
+}
+
+
+
+int main (){
+
+	Clock_INIT();
+	HAL_Driver_init();
+
+	//    LCD_init();
+
+	unsigned char object_detected ;
+	unsigned char flame_detected ;
+
+	while(1)
+
+
+	{
+	//      object_detected = (Ultrasnic_Read() <= ULTRA_Threshold);
+		      flame_detected = ((Flame_Frontmid_Read() >= Flame_Threshold) || (Flame_FrontRight_Read() >= Flame_Threshold) || (Flame_FrontLeft_Read() >= Flame_Threshold) || (Flame_Back_Read() >= Flame_Threshold) || (Flame_Right_Read() >= Flame_Threshold) || (Flame_Left_Read() >= Flame_Threshold) );
+//		      if(!(object_detected || flame_detected))
+//		      {
+//		          CarMovements();
+//		      }
+//		      else if(object_detected && flame_detected) // detected object
+//		      {
+//		          CarAdjustament (Flame_MaxReading());
+//		          CarAction();
+//		          n = 1;
+//		      }
+//		      else if (object_detected)
+//		      {
+//		          n = 1;
+//		          Object_Handle();
+//		          //todo
+//
+//		      }
+//		      else if (flame_detected)
+//		      {
+//		          CarAdjustament (Flame_MaxReading());
+//		          CarAction();
+//		          n = 1;
+//		      }
+//
+		      if (!flame_detected)
+		      {
+		          CarAdjustament (Flame_MaxReading());
+		          CarAction();
+		          n = 1;
+		      }
+
+
+	}
 	return 0;
 }

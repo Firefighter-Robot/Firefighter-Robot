@@ -4,12 +4,12 @@
 
 
 
-#define Flame_Fromtmid_ch
-#define Flame_FrontRight_ch
-#define Flame_FrontLeft_ch
-#define Flame_Back_ch
-#define Flame_Right_ch
-#define Flame_Left_ch
+#define Flame_Fromtmid_ch					Ch0
+#define Flame_FrontRight_ch					Ch2
+#define Flame_FrontLeft_ch					Ch4
+#define Flame_Back_ch						Ch5
+#define Flame_Right_ch						Ch8
+#define Flame_Left_ch						Ch7
 
 //=================================APIS==================
 

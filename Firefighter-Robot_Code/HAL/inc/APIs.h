@@ -23,10 +23,7 @@
 
 
 
-#define distance_step								5
-#define angle_step									5
-
-#define distance_step		10
+#define distance_step		50
 #define angle_step			50
 
 
@@ -127,8 +124,8 @@ extern int Flame_Left_Read();
 
 extern float Ultrasnic_Read();
     
-extern void Car_Routation(uint8_t angle , uint8_t direction); //routate the car
-extern void Car_Move(uint8_t speed , uint8_t distance); //move foraward only
+extern void Car_Routation(uint8_t direction); //routate the car
+extern void Car_Move(uint8_t speed , uint32_t distance); //move foraward only
 extern void Servo_RotationAngle(uint8_t angle , uint8_t dirction);
 extern void U_Turn(uint8_t speed);
 

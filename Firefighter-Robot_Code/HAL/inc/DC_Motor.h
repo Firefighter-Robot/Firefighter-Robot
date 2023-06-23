@@ -17,8 +17,8 @@
 #define HALF_Controle_2_Channel
 
 // 2 Channel
-#define Left_Motors 									CH1
-#define Right_Motors		 							CH2
+#define Left_Motors 									CH2
+#define Right_Motors		 							CH4
 
 // 4 Channel
 #define Front_Left_Motor 								CH1
@@ -29,11 +29,11 @@
 
 // 2 Channel
 // Left_Motors
-#define Left_Motors_Front                                GPIO_PIN_9  // PORTA
-#define Left_Motors_Back                                 GPIO_PIN_10  // PORTA
+#define Left_Motors_Front                                GPIO_PIN_8  // PORTB
+#define Left_Motors_Back                                 GPIO_PIN_9  // PORTB
 //Right_Motor
-#define Right_Motors_Front                                GPIO_PIN_11  // PORTA
-#define Right_Motors_Back                                 GPIO_PIN_12  // PORTA
+#define Right_Motors_Front                                GPIO_PIN_7  // PORTB
+#define Right_Motors_Back                                 GPIO_PIN_6  // PORTB
 
 
 // 4 Channel
@@ -90,10 +90,10 @@
 #define _Step_Duty_Cycle								(uint16_t)(Top_Value / 100)
 #define _Duty_Cycle(x)									(uint16_t)( (Top_Value - (x*_Step_Duty_Cycle) ) )
 
-
+void Car_Rotation_Object(uint8_t direction , uint32_t del);
 void HAL_DC_Motors_init(void);
-void Car_Routation(uint8_t angle , uint8_t direction);
-void Car_Move(uint8_t speed , uint8_t distance);
+void Car_Routation(uint8_t direction);
+void Car_Move(uint8_t speed , uint32_t distance);
 void U_Turn(uint8_t speed);
 void Car_Stop_Moving(void);
 

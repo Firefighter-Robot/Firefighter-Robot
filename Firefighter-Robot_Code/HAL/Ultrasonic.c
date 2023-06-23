@@ -8,7 +8,7 @@
 #include "Ultrasonic.h"
 
 
-GPIO_Pinconfig_t GPIO_Pin;
+static GPIO_Pinconfig_t GPIO_Pin;
 
 
 void HAL_Ultrasonic_init(void)
@@ -24,7 +24,8 @@ void HAL_Ultrasonic_init(void)
 
 float Ultrasnic_Read(void)
 {
-	float Distance;
+	float Distance = 0 ;
+
 	//trigger pulse for 10ms to start the ultrasonic
 	MCAL_GPIO_WritePin(PORT, Trigger_Pin, GPIO_PIN_SET);
 	delay_ms(10);

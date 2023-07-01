@@ -1,7 +1,8 @@
 ../HAL/DC_Motor.c:24:6:Set_GPIO_pins	8	static
 ../HAL/DC_Motor.c:90:6:HAL_DC_Motors_init	8	static
-../HAL/DC_Motor.c:126:6:Car_Rotation_Object	16	static
-../HAL/DC_Motor.c:161:6:Car_Routation	16	static
-../HAL/DC_Motor.c:267:6:Car_Move	16	static
-../HAL/DC_Motor.c:319:6:U_Turn	16	static
-../HAL/DC_Motor.c:337:6:Car_Stop_Moving	8	static
+../HAL/DC_Motor.c:127:6:Car_GetBack	16	static
+../HAL/DC_Motor.c:146:6:Car_Rotation_Object	16	static
+../HAL/DC_Motor.c:182:6:Car_Routation	16	static
+../HAL/DC_Motor.c:288:6:Car_Move	16	static
+../HAL/DC_Motor.c:340:6:U_Turn	16	static
+../HAL/DC_Motor.c:358:6:Car_Stop_Moving	8	static

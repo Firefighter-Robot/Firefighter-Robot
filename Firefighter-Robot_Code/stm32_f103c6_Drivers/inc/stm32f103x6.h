@@ -70,6 +70,8 @@
 #define ADC1_BASE 							0x40012400UL
 #define ADC2_BASE 							0x40012800UL
 
+#define TIM1_BASE              0x40012C00UL
+
 //Base addresses for BUS APB1 Peripherals
 // USART2
 #define USART2_BASE							0X40004400UL
@@ -253,6 +255,7 @@ typedef struct
 #define I2C1		((I2C_TypeDef*)I2C1_BASE)
 #define I2C2		((I2C_TypeDef*)I2C2_BASE)
 
+#define TIM1   		((TIMx_TypeDef*)TIM1_BASE)
 #define TIM2		((TIMx_TypeDef*)TIM2_BASE)
 #define TIM3		((TIMx_TypeDef*)TIM3_BASE)
 #define TIM4		((TIMx_TypeDef*)TIM4_BASE)
@@ -296,11 +299,13 @@ typedef struct
 #define RCC_I2C2_CLK_Disable()	(RCC->APB1RSTR |=1<<22)
 
 //TIMER2
+#define RCC_TIM1_CLK_Enable()  (RCC->APB2ENR |=1<<11)
 #define RCC_TIM2_CLK_Enable()	(RCC->APB1ENR |=1<<0)
 #define RCC_TIM3_CLK_Enable()	(RCC->APB1ENR |=1<<1)
 #define RCC_TIM4_CLK_Enable()	(RCC->APB1ENR |=1<<2)
 #define RCC_TIM5_CLK_Enable()	(RCC->APB1ENR |=1<<3)
 
+#define RCC_TIM1_CLK_Disable()  (RCC->APB2RSTR |=1<<11)
 #define RCC_TIM2_CLK_Disable()	(RCC->APB1RSTR |=1<<0)
 #define RCC_TIM3_CLK_Disable()	(RCC->APB1RSTR |=1<<1)
 #define RCC_TIM4_CLK_Disable()	(RCC->APB1RSTR |=1<<2)

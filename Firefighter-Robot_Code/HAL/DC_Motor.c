@@ -123,6 +123,26 @@ void HAL_DC_Motors_init(void)
 	Set_GPIO_pins();
 }
 
+
+void Car_GetBack( uint32_t del)
+{
+
+		// Right Motors will move forward
+		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Front,GPIO_PIN_RESET);
+		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Back,GPIO_PIN_SET);
+		// Left Motors will move backward
+		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Back,GPIO_PIN_RESET);
+		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_SET);
+
+		// by iteration angle
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Left_Motors);
+		delay_ms(del);
+
+
+}
+
+
 void Car_Rotation_Object(uint8_t direction , uint32_t del)
 {
 	if(direction == HAL_Car_TurnRight)
@@ -135,8 +155,8 @@ void Car_Rotation_Object(uint8_t direction , uint32_t del)
 		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_SET);
 
 		// by iteration angle
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Right_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Left_Motors);
 		delay_ms(del);
 
 	}
@@ -151,11 +171,12 @@ void Car_Rotation_Object(uint8_t direction , uint32_t del)
 		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Front,GPIO_PIN_RESET);
 
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Left_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Right_Motors);
 		delay_ms(del);
 
 	}
+	Car_Stop_Moving();
 }
 
 void Car_Routation(uint8_t direction)
@@ -226,36 +247,36 @@ void Car_Routation(uint8_t direction)
 	if(direction == HAL_Car_TurnRight)
 	{
 		// Right Motors will move forward
-		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Front,GPIO_PIN_RESET);
-		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Back,GPIO_PIN_SET);
+		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Front,GPIO_PIN_SET);
+		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Back,GPIO_PIN_RESET);
 		// Left Motors will move backward
-		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Back,GPIO_PIN_SET);
-		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_RESET);
+		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Back,GPIO_PIN_RESET);
+		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_SET);
 
 		// by iteration angle
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Right_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Left_Motors);
 
 	}
 	else if(direction == HAL_Car_TurnLeft)
 	{
 
 		// motor Front_Left_Motor move forward
-		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_SET);
-		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Back,GPIO_PIN_RESET);
+		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_RESET);
+		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Back,GPIO_PIN_SET);
 		// motor Back_Left_Motor move forward
 		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Back,GPIO_PIN_SET);
 		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Front,GPIO_PIN_RESET);
 
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Left_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Right_Motors);
 
 	}
 #endif
 
 	// by iteration set delay to specific rotation
-	delay_ms(350);
+	delay_ms(540);
 
 
 	// stop the movement
@@ -311,7 +332,7 @@ void Car_Move(uint8_t speed , uint32_t distance)
 	delay_ms(distance);
 
 	// stop the movement
-//	Car_Stop_Moving();
+	Car_Stop_Moving();
 
 
 }

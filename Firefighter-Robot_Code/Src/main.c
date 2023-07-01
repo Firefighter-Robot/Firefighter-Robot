@@ -18,36 +18,44 @@
 
 #include"APIs.h"
 
+#define ULTRA_Fire_Threshold         25
 
 #define ULTRA_Threshold         40
-#define Flame_Threshold         40
-#define DISTANCE    100
+#define Flame_Threshold        	1500
+#define DISTANCE    50
 
-
+#define RCC_CFGR      *(volatile uint32_t *)(RCC_BASE+0x04)
+#define RCC_CR      *(volatile uint32_t *)(RCC_BASE+0x00)
 
 // delete this macro when writing Pump driver
 //#define pumb(x)   ;
 
 
-int n = 1;
+static int n = 20;
 
 
 typedef enum Redirection
 {
 
+	NONE,
 	Front_mid_en,
-	Front_Left_en,
-	Front_Right_en,
 	Right_en,
 	Left_en,
-	Back_en
+	Back_en,
+	Front_Right_en,
+	Front_Left_en
 
 }Redirection;
 
 
 
+
+
 void Clock_INIT(void)
 {
+
+
+
 	//set on the clock for PORTA
 	RCC_GPIOA_CLK_EN();
 	//set on the clock for PORTB
@@ -59,100 +67,199 @@ void Clock_INIT(void)
 	RCC_TIM3_CLK_Enable();
 	RCC_TIM4_CLK_Enable();
 	RCC_ADC1_CLK_Enable();
+	RCC_TIM1_CLK_Enable();
+
+
+	  RCC_CFGR |=0b10<<0;  // sw select PLL
+	  RCC_CFGR |=0b0110<<18;  //PLL multiplication factor(8)
+	  RCC_CFGR |=0b1001<<4;  //AHB prescaler (AHB at 8 MH)
+	  RCC_CR |=0b1<<24;  // PLL enable
+
 }
 
+
+void pumb(uint8_t x)
+{
+	MCAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, x);
+}
 
 
 
 Redirection Flame_MaxReading()
 {
-	int FrontMid = Flame_Frontmid_Read() - (int)Flame_Threshold;
-	int FrontRight = Flame_FrontRight_Read() - (int)Flame_Threshold;
-	int FrontLeft = Flame_FrontLeft_Read() - (int)Flame_Threshold;
-	int Back = Flame_Back_Read() - (int)Flame_Threshold;
-	int Right = Flame_Right_Read() - (int)Flame_Threshold;
-	int Left = Flame_Left_Read() - (int)Flame_Threshold;
 
-	if ((FrontMid > FrontRight) && (FrontMid > FrontLeft) && (FrontMid > Back) && (FrontMid > Right) && (FrontMid > Left))
+	if (Flame_Frontmid_Read())
 	{
 		return Front_mid_en;
 	}
-	else if ((FrontRight > FrontLeft) && (FrontRight > Back) && (FrontRight > Right) && (FrontRight > Left))
-	{
-		return Front_Right_en;
-	}
-	else if ((FrontLeft > Back) && (FrontLeft > Right) && (FrontLeft > Left))
-	{
-		return Front_Left_en;
-	}
-	else if ((Back > Right) && (Back > Left))
+	else if (Flame_Back_Read())
 	{
 		return Back_en;
 	}
-	else if ((Right > Left))
+	else if (Flame_Right_Read())
 	{
 		return Right_en;
 	}
-	else
+	else if(Flame_Left_Read())
 	{
 		return Left_en;
 	}
+	else if(Flame_FrontRight_Read())
+	{
+		return Front_Right_en;
+	}
+	else if(Flame_FrontLeft_Read())
+	{
+		return Front_Left_en;
+	}
+
+
+
+	return NONE;
 }
 
 void CarAdjustament (Redirection MaxReading)
 {
+	int m = 0;
 	switch (MaxReading)
 	{
-	case Front_Left_en :
+	case NONE:
+		break;
 	case Left_en :
+	case Front_Left_en:
 		//turn left
 		while(Flame_MaxReading() != Front_mid_en)
 		{
-			Car_Rotation_Object(Car_TurnLeft , 50);
+			m++;
+			Car_Rotation_Object(Car_TurnLeft , 20);
+			if(m == 300)
+			{
+
+				break;
+			}
 		}
-	case Front_Right_en :
+		Car_Stop_Moving();
+		break;
 	case Right_en :
 	case Back_en :
+	case Front_Right_en:
+
 		//turn right
 		while(Flame_MaxReading() != Front_mid_en)
 		{
-			Car_Rotation_Object(Car_TurnRight , 50);
+			m++;
+			Car_Rotation_Object(Car_TurnRight , 20);
+			if(m == 200)
+			{
+
+				break;
+			}
 		}
+		Car_Stop_Moving();
+		break;
 	}
 }
 
 
-void CarMovements()
+//void CarMovements()
+//{
+//
+//
+//	//turn_right -> n * count
+//	Car_Move( Car_Speed_50, n * DISTANCE);
+//	Car_Routation( Car_TurnRight); // angle 90 -> duty 30 . and delay 800
+//	Car_Move( Car_Speed_50, n * DISTANCE);
+//	//turn right -> n * count
+//	Car_Routation( Car_TurnRight);
+//	if(n > 50)
+//	{
+//		n = 3;
+//	}
+//	n++;
+//
+//}
+
+char CarMovements()
 {
-	//turn_right -> n * count
-	Car_Move( Car_Speed_70, n * DISTANCE);
+
+
+
+	int i = 0 ;
+
+//	if(n > 50)
+//	{
+//		n = 1;
+//	}
+	for(i = 0 ; i < n; i++)
+	{
+		//turn_right -> n * count
+		Car_Move( Car_Speed_60, DISTANCE);
+		Car_Stop_Moving();
+		if(((Ultrasnic_Read() <= ULTRA_Threshold) || (Flame_Frontmid_Read()) || (Flame_Back_Read()) || (Flame_Right_Read()) || (Flame_Left_Read()) || ( Flame_FrontRight_Read()) ))
+		{
+			Car_Stop_Moving();
+			n--;
+			return 0;
+		}
+
+	}
 	Car_Routation( Car_TurnRight); // angle 90 -> duty 30 . and delay 800
-	Car_Move( Car_Speed_70, n * DISTANCE);
-	//turn right -> n * count
+	for(i = 0 ; i < n; i++)
+	{
+		//turn_right -> n * count
+		Car_Move( Car_Speed_60, DISTANCE);
+		Car_Stop_Moving();
+		if(((Ultrasnic_Read() <= ULTRA_Threshold) || (Flame_Frontmid_Read()) || (Flame_Back_Read()) || (Flame_Right_Read()) || (Flame_Left_Read()) || ( Flame_FrontRight_Read()) ))
+		{
+			Car_Stop_Moving();
+			n--;
+			return 0;
+		}
+	}	//turn right -> n * count
 	Car_Routation( Car_TurnRight);
-
 	n++;
-
+	return 0;
 }
 
 void CarAction ()
 {
-	while(!(Ultrasnic_Read() <= ULTRA_Threshold))
+
+	int k = 0;
+//	((!(Flame_Distance_Read() <= Flame_Threshold)) && (Flame_Frontmid_Read()))
+
+	while(((!(Ultrasnic_Read() <= ULTRA_Fire_Threshold)) && (Flame_Frontmid_Read())))
 	{
+//		if(Flame_Distance_Read() <= Flame_Threshold)
+//		{
+//			k = 0 ;
+//		}
+		if(Flame_FrontRight_Read() || Flame_FrontLeft_Read())
+		{
+			CarAdjustament (Flame_MaxReading());
+		}
 		//move forward
-		Car_Move(Car_Speed_70 , distance_step);
+		Car_Move(Car_Speed_40 , distance_step);
 	}
+	k = 1;
+	Car_Stop_Moving();
 	//Routate the servo
 	//Servo_RotationAngle(char angle , char dirction);
 	//pumb on
-	while(Flame_Frontmid_Read() >= Flame_Threshold)
+	while(Flame_Frontmid_Read())
 	{
 		pumb(pumb_on);
 	}
 	pumb(pumb_off);
 }
 
-
+void Init_pumb()
+{
+	GPIO_Pinconfig_t Conf;
+	Conf.GPIO_MODE=GPIO_MODE_OUTPUT_PP;
+	Conf.GPIO_OUTPUT_Speed=GPIO_speed_10M;
+	Conf.pinNumber=GPIO_PIN_12;
+	MCAL_GPIO_Init(GPIOB,&Conf);
+}
 
 void HAL_Driver_init(void)
 {
@@ -160,17 +267,17 @@ void HAL_Driver_init(void)
 	HAL_DC_Motors_init();
 	HAL_Ultrasonic_init();
 	// Servo_Init();
-	//Init_pumb();
+	Init_pumb();
 
 }
 
 
 void Object_Handle()
 {
-	while(Ultrasnic_Read() <= ULTRA_Threshold)
-	{
-		Car_Rotation_Object(Car_TurnRight , 450);
-	}
+	Car_Stop_Moving();
+	Car_GetBack(400);
+	Car_Rotation_Object(Car_TurnRight , 600 );
+	Car_Stop_Moving();
 }
 
 
@@ -182,46 +289,48 @@ int main (){
 
 	//    LCD_init();
 
-	unsigned char object_detected ;
-	unsigned char flame_detected ;
+	unsigned char object_detected = 0 ;
+	unsigned char flame_detected = 0;
+
+	GPIO_Pinconfig_t Conf;
+	Conf.GPIO_MODE=GPIO_MODE_OUTPUT_OD;
+	Conf.GPIO_OUTPUT_Speed=GPIO_speed_2M;
+	Conf.pinNumber=GPIO_PIN_13;
+	MCAL_GPIO_Init(GPIOC,&Conf);
+
 
 	while(1)
-
-
 	{
-	//      object_detected = (Ultrasnic_Read() <= ULTRA_Threshold);
-		      flame_detected = ((Flame_Frontmid_Read() >= Flame_Threshold) || (Flame_FrontRight_Read() >= Flame_Threshold) || (Flame_FrontLeft_Read() >= Flame_Threshold) || (Flame_Back_Read() >= Flame_Threshold) || (Flame_Right_Read() >= Flame_Threshold) || (Flame_Left_Read() >= Flame_Threshold) );
-//		      if(!(object_detected || flame_detected))
-//		      {
-//		          CarMovements();
-//		      }
-//		      else if(object_detected && flame_detected) // detected object
-//		      {
-//		          CarAdjustament (Flame_MaxReading());
-//		          CarAction();
-//		          n = 1;
-//		      }
-//		      else if (object_detected)
-//		      {
-//		          n = 1;
-//		          Object_Handle();
-//		          //todo
-//
-//		      }
-//		      else if (flame_detected)
-//		      {
-//		          CarAdjustament (Flame_MaxReading());
-//		          CarAction();
-//		          n = 1;
-//		      }
-//
-		      if (!flame_detected)
-		      {
-		          CarAdjustament (Flame_MaxReading());
-		          CarAction();
-		          n = 1;
-		      }
 
+		object_detected = (Ultrasnic_Read() <= ULTRA_Threshold);
+		flame_detected = ((Flame_Frontmid_Read()) || (Flame_Back_Read()) || (Flame_Right_Read()) || (Flame_Left_Read()) || ( Flame_FrontRight_Read()) || ( Flame_FrontLeft_Read()) );
+		if(!(object_detected || flame_detected))
+		{
+			CarMovements();
+		}
+		else if(object_detected && flame_detected) // detected object
+		{
+			CarAdjustament (Flame_MaxReading());
+			CarAction();
+			n-- ;
+		}
+		else if (object_detected)
+		{
+			n--;
+			Object_Handle();
+			//todo
+
+		}
+		else if (flame_detected)
+		{
+			CarAdjustament (Flame_MaxReading());
+			CarAction();
+			n--;
+		}
+
+
+		MCAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		delay_ms(100);
 
 	}
 	return 0;

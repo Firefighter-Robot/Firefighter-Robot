@@ -23,7 +23,7 @@
 
 
 
-#define distance_step		50
+#define distance_step		20
 #define angle_step			50
 
 
@@ -105,10 +105,10 @@
 
 
 
-#define pumb_on
-#define pumb_off
+#define pumb_on			1
+#define pumb_off		0
 
-#define pumb(x)
+
 
 
 extern int Flame_Frontmid_Read();
@@ -120,6 +120,7 @@ extern int Flame_Left_Read();
 
 
 
+void pumb(uint8_t x);
 
 
 extern float Ultrasnic_Read();

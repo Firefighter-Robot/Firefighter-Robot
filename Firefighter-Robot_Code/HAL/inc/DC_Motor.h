@@ -17,7 +17,7 @@
 #define HALF_Controle_2_Channel
 
 // 2 Channel
-#define Left_Motors 									CH2
+#define Left_Motors 									CH1
 #define Right_Motors		 							CH4
 
 // 4 Channel
@@ -91,6 +91,7 @@
 #define _Duty_Cycle(x)									(uint16_t)( (Top_Value - (x*_Step_Duty_Cycle) ) )
 
 void Car_Rotation_Object(uint8_t direction , uint32_t del);
+void Car_GetBack( uint32_t del);
 void HAL_DC_Motors_init(void);
 void Car_Routation(uint8_t direction);
 void Car_Move(uint8_t speed , uint32_t distance);

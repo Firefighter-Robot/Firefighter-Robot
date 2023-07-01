@@ -77,6 +77,7 @@ uint16_t MCAL_ADC_Read( enum NUM_CH CH )
 	//Enable adc
 	ADC1->CR2 |=1<<0;
 	while(!(ADC1->SR & (1<<1)));
+	ADC1->CR2 &=~(1<<22);
 	data=ADC1->DR;
 	return data;
 }

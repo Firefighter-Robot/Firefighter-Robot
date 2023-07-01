@@ -20,7 +20,7 @@ int Flame_FrontLeft_Read();
 int Flame_Back_Read();
 int Flame_Right_Read();
 int Flame_Left_Read();
-
+int Flame_Distance_Read();
 
 
 #endif

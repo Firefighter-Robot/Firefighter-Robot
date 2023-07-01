@@ -1,7 +1,8 @@
 ../HAL/Flame_Sensor.c:6:6:HAL_Flame_init	16	static
-../HAL/Flame_Sensor.c:64:5:Flame_Frontmid_Read	8	static
-../HAL/Flame_Sensor.c:68:5:Flame_FrontRight_Read	8	static
-../HAL/Flame_Sensor.c:72:5:Flame_FrontLeft_Read	8	static
-../HAL/Flame_Sensor.c:76:5:Flame_Back_Read	8	static
-../HAL/Flame_Sensor.c:80:5:Flame_Right_Read	8	static
-../HAL/Flame_Sensor.c:84:5:Flame_Left_Read	8	static
+../HAL/Flame_Sensor.c:77:5:Flame_Frontmid_Read	8	static
+../HAL/Flame_Sensor.c:81:5:Flame_FrontLeft_Read	8	static
+../HAL/Flame_Sensor.c:85:5:Flame_Distance_Read	8	static
+../HAL/Flame_Sensor.c:90:5:Flame_FrontRight_Read	8	static
+../HAL/Flame_Sensor.c:94:5:Flame_Back_Read	8	static
+../HAL/Flame_Sensor.c:98:5:Flame_Right_Read	8	static
+../HAL/Flame_Sensor.c:102:5:Flame_Left_Read	8	static

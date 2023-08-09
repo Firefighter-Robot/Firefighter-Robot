@@ -95,7 +95,7 @@ void MCAL_TIMx_Set_Compare_Value( TIMx_TypeDef* TIMx  , uint16_t Compare_Value ,
 void MCAL_TIMx_Set_TOP_Value( TIMx_TypeDef* TIMx  , uint16_t TOP_Value ) ;
 void MCAL_TIMx_DeInit( TIMx_TypeDef* TIMx );
 void MCAL_TIM4_CAP_Init(void);
-float MCAL_TIM4_CAP_Get_High(void);
+float MCAL_TIM4_CAP_Get_High(channel Chan);
 float MCAL_TIM4_CAP_Get_Low(void);
 uint16_t MCAL_TIM4_CAP_Get_Freq(void);
 uint16_t MCAL_TIM4_CAP_Get_Duty_Cycle(void);

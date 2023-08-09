@@ -54,15 +54,15 @@
  */
 
 /**================================================================
-* @Fn				-MCAL_TIMx_Init
-* @brief		  	-Initializes the Timer [2-3] according to the specified parameters in the TIMx_Config
-* 					 @ ref  TIM2_MODE_Define  and @ ref  TIM2_COUNT_MODE_Define and @ ref  TIM2_Prescalers_Defin
-* @param [in] 		-TIMx_Config: configuration information for the specified timer 2 or 3
-* @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
-* @param [in] 		-Chan:  specified channel from 1 to 4
-* @retval 			-none
-* Note				-Support Fast PWM and Normal ( delay mode )
-*/
+ * @Fn				-MCAL_TIMx_Init
+ * @brief		  	-Initializes the Timer [2-3] according to the specified parameters in the TIMx_Config
+ * 					 @ ref  TIM2_MODE_Define  and @ ref  TIM2_COUNT_MODE_Define and @ ref  TIM2_Prescalers_Defin
+ * @param [in] 		-TIMx_Config: configuration information for the specified timer 2 or 3
+ * @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
+ * @param [in] 		-Chan:  specified channel from 1 to 4
+ * @retval 			-none
+ * Note				-Support Fast PWM and Normal ( delay mode )
+ */
 void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel Chan )
 {
 	GPIO_Pinconfig_t pinconfig ;
@@ -80,33 +80,33 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 			switch(Chan)
 			{
 			case CH1 :
-				{
-					//set pin outpt
-					pinconfig.pinNumber = GPIO_PIN_0 ;
-					break;
-				}
+			{
+				//set pin outpt
+				pinconfig.pinNumber = GPIO_PIN_0 ;
+				break;
+			}
 			case CH2 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_1 ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_1 ;
+				break;
+			}
 			case CH3 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_2 ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_2 ;
+				break;
+			}
 			case CH4 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_3 ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_3 ;
+				break;
+			}
 			}
 			MCAL_GPIO_Init(GPIOA, &pinconfig) ;
 			//Disable interrupt
-			 NVIC_IRQ28_TIM2_Disable();
+			NVIC_IRQ28_TIM2_Disable();
 		}
 		else if(TIMx==TIM3)
 		{
@@ -115,36 +115,36 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 			switch(Chan)
 			{
 			case CH1 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_6 ;
-					MCAL_GPIO_Init(GPIOA, &pinconfig) ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_6 ;
+				MCAL_GPIO_Init(GPIOA, &pinconfig) ;
+				break;
+			}
 			case CH2 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_7 ;
-					MCAL_GPIO_Init(GPIOA, &pinconfig) ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_7 ;
+				MCAL_GPIO_Init(GPIOA, &pinconfig) ;
+				break;
+			}
 			case CH3 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_0 ;
-					MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_0 ;
+				MCAL_GPIO_Init(GPIOB, &pinconfig) ;
+				break;
+			}
 			case CH4 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_1 ;
-					MCAL_GPIO_Init(GPIOB, &pinconfig) ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_1 ;
+				MCAL_GPIO_Init(GPIOB, &pinconfig) ;
+				break;
+			}
 			}
 			//Disable interrupt
-			 NVIC_IRQ28_TIM2_Disable();
+			NVIC_IRQ28_TIM2_Disable();
 		}
 		else if(TIMx==TIM4)
 		{
@@ -153,58 +153,58 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 			switch(Chan)
 			{
 			case CH1 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_6 ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_6 ;
+				break;
+			}
 			case CH2 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_7 ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_7 ;
+				break;
+			}
 			case CH3 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_8 ;
-					break;
-				}
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_8 ;
+				break;
+			}
 			case CH4 :
-				{
-					//set pin output
-					pinconfig.pinNumber = GPIO_PIN_9 ;
+			{
+				//set pin output
+				pinconfig.pinNumber = GPIO_PIN_9 ;
 
-					break;
-				}
+				break;
+			}
 			}
 			MCAL_GPIO_Init(GPIOB, &pinconfig) ;
 			//Disable interrupt
-			 NVIC_IRQ30_TIM4_Disable();
+			NVIC_IRQ30_TIM4_Disable();
 		}
 		// set PWM mode 1 or PWM mode 2 and Output compare  preload enable
 		switch(Chan)
 		{
 		case CH1 :
-			{
-				TIMx->CCMR1 |=15<<3;
-				break;
-			}
+		{
+			TIMx->CCMR1 |=15<<3;
+			break;
+		}
 		case CH2 :
-			{
-				TIMx->CCMR1 |=15<<11;
-				break;
-			}
+		{
+			TIMx->CCMR1 |=15<<11;
+			break;
+		}
 		case CH3 :
-			{
-				TIMx->CCMR2 |=15<<3;
-				break;
-			}
+		{
+			TIMx->CCMR2 |=15<<3;
+			break;
+		}
 		case CH4 :
-			{
-				TIMx->CCMR2 |=15<<11;
-				break;
-			}
+		{
+			TIMx->CCMR2 |=15<<11;
+			break;
+		}
 		}
 	}
 	else
@@ -213,65 +213,64 @@ void MCAL_TIMx_Init( TIMx_TypeDef* TIMx , TIMx_config_t* TIMx_Config , channel C
 		switch(Chan)
 		{
 		case CH1 :
-			{
-				TIMx->CCMR1 &=~(15<<3);
-				break;
-			}
+		{
+			TIMx->CCMR1 &=~(15<<3);
+			break;
+		}
 		case CH2 :
-			{
-				TIMx->CCMR1 &=~(15<<11);
-				break;
-			}
+		{
+			TIMx->CCMR1 &=~(15<<11);
+			break;
+		}
 		case CH3 :
-			{
-				TIMx->CCMR2 &=~(15<<3);
-				break;
-			}
+		{
+			TIMx->CCMR2 &=~(15<<3);
+			break;
+		}
 		case CH4 :
-			{
-				TIMx->CCMR2  &=~(15<<11);
-				break;
-			}
+		{
+			TIMx->CCMR2  &=~(15<<11);
+			break;
+		}
 		}
 	}
 	//output polarity and  output enable
 	switch(Chan)
 	{
 	case CH1 :
-		{
-			TIMx->CCER|=1<<0;
-			//set init Compare value 10000
-			TIMx->CCR1 = 10000;
-			break;
-		}
+	{
+		TIMx->CCER|=1<<0;
+		//set init Compare value 10000
+		TIMx->CCR1 = 10000;
+		break;
+	}
 	case CH2 :
-		{
-			TIMx->CCER|=1<<4;
-			//set init Compare value 10000
-			TIMx->CCR2 = 10000;
-			break;
-		}
+	{
+		TIMx->CCER|=3<<4;
+		//set init Compare value 10000
+		TIMx->CCR2 = 10000;
+		break;
+	}
 	case CH3 :
-		{
-			TIMx->CCER|=1<<8;
-			//set init Compare value 10000
-			TIMx->CCR3 = 10000;
-			break;
-		}
+	{
+		TIMx->CCER|=1<<8;
+		//set init Compare value 10000
+		TIMx->CCR3 = 10000;
+		break;
+	}
 	case CH4 :
-		{
-			TIMx->CCER|=1<<12;
-			//set init Compare value 10000
-			TIMx->CCR4 = 10000;
-			break;
-		}
+	{
+		TIMx->CCER|=1<<12;
+		//set init Compare value 10000
+		TIMx->CCR4 = 10000;
+		break;
+	}
 	}
 	// set Prescalers
 	TIMx->PSC = TIMx_Config->Prescalers;
 	//set init top value 20000
 	TIMx->ARR = 20000;
 }
-
 
 
 void MCAL_TIM4_CAP_Init(void)
@@ -282,20 +281,54 @@ void MCAL_TIM4_CAP_Init(void)
 	pinconfig.GPIO_MODE=GPIO_MODE_INPUT_FLO;
 	pinconfig.pinNumber=GPIO_PIN_6;
 	MCAL_GPIO_Init(GPIOA, &pinconfig);
+
+	pinconfig.GPIO_MODE=GPIO_MODE_INPUT_FLO;
+	pinconfig.pinNumber=GPIO_PIN_7;
+	MCAL_GPIO_Init(GPIOA, &pinconfig);
+
 	//set Prescalers 7+1=8 TIM4 Clock=8mhz/8=1mh
 	TIM3->PSC=7;
 	//set top value
 	TIM3->ARR=0XFFFF;
 	//CC1 channel is configured as input, IC1 is mapped on TI1
-	TIM3->CCMR1 =0x31;
+	TIM3->CCMR1 =0x3131;
 	// Enable capture on CC1
-	TIM3->CCER |= (1<<0);
+	TIM3->CCER |= (17<<0);
 }
 
 
-float MCAL_TIM4_CAP_Get_High(void)
+float MCAL_TIM4_CAP_Get_High(channel Chan)
 {
 	float dis=0;
+	//  switch(Chan)
+	//  {
+	//  case CH1 :
+	//  {
+	//    TIM3->CCER &=~(1<<1);
+	//    while(!(TIM3->SR &(1<<1)));
+	//    TIM3->EGR |=1<<0;
+	//    TIM3->SR=0;
+	//    TIM3->CCER |=1<<1;
+	//    while(!(TIM3->SR &(1<<1)));
+	//    TIM3->SR=0;
+	//    TIM3->CCER &=~(1<<1);
+	//    dis=TIM3->CCR1;
+	//    break;
+	//  }
+	//  case CH2 :
+	//  {
+	//    TIM3->CCER &=~(1<<5);
+	//    while(!(TIM3->SR &(1<<2)));
+	//    TIM3->EGR |=1<<0;
+	//    TIM3->SR=0;
+	//    TIM3->CCER |=1<<5;
+	//    while(!(TIM3->SR &(1<<2)));
+	//    TIM3->SR=0;
+	//    TIM3->CCER &=~(1<<5);
+	//    dis=TIM3->CCR2;
+	//    break;
+	//  }
+	//  }
 	TIM3->CCER &=~(1<<1);
 	while(!(TIM3->SR &(1<<1)));
 	TIM3->EGR |=1<<0;
@@ -330,66 +363,66 @@ float MCAL_TIM4_CAP_Get_Low(void)
 }
 
 
-uint16_t MCAL_TIM4_CAP_Get_Freq(void)
-{
-	uint16_t freq;
-	freq=1/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
-	return freq;
-}
+//uint16_t MCAL_TIM4_CAP_Get_Freq(void)
+//{
+//	uint16_t freq;
+//	freq=1/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
+//	return freq;
+//}
 
-uint16_t MCAL_TIM4_CAP_Get_Duty_Cycle(void)
-{
-	uint16_t Duty;
-	Duty=MCAL_TIM4_CAP_Get_High()/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
-	return Duty;
-}
+//uint16_t MCAL_TIM4_CAP_Get_Duty_Cycle(void)
+//{
+//	uint16_t Duty;
+//	Duty=MCAL_TIM4_CAP_Get_High()/(MCAL_TIM4_CAP_Get_Low()+MCAL_TIM4_CAP_Get_High());
+//	return Duty;
+//}
 
 /**================================================================
-* @Fn				-MCAL_TIMx_Set_Compare_Value
-* @brief		  	-set a compare value to compared with the counter value  to generate waveform output (at PWM Mode)
-* @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
-* @param [in] 		-Compare_Value: Compare_Value pass to CCRx x=[1:4]
-* @param [in] 		-Chan: Chose channel 1,2,3 or 4 (TIMx contains 4 channel)
-* @retval 			-none
-* Note				-none
-*/
+ * @Fn				-MCAL_TIMx_Set_Compare_Value
+ * @brief		  	-set a compare value to compared with the counter value  to generate waveform output (at PWM Mode)
+ * @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
+ * @param [in] 		-Compare_Value: Compare_Value pass to CCRx x=[1:4]
+ * @param [in] 		-Chan: Chose channel 1,2,3 or 4 (TIMx contains 4 channel)
+ * @retval 			-none
+ * Note				-none
+ */
 void MCAL_TIMx_Set_Compare_Value( TIMx_TypeDef* TIMx  , uint16_t Compare_Value , channel Chan )
 {
 
 	switch(Chan)
 	{
 	case CH1 :
-		{
-			TIMx->CCR1 = Compare_Value;
-			break;
-		}
+	{
+		TIMx->CCR1 = Compare_Value;
+		break;
+	}
 	case CH2 :
-		{
-			TIMx->CCR2 = Compare_Value;
-			break;
-		}
+	{
+		TIMx->CCR2 = Compare_Value;
+		break;
+	}
 	case CH3 :
-		{
-			TIMx->CCR3 = Compare_Value;
-			break;
-		}
+	{
+		TIMx->CCR3 = Compare_Value;
+		break;
+	}
 	case CH4 :
-		{
-			TIMx->CCR4 = Compare_Value;
-			break;
-		}
+	{
+		TIMx->CCR4 = Compare_Value;
+		break;
+	}
 	}
 	TIMx->EGR |=1<<0;
 }
 
 /**================================================================
-* @Fn				-MCAL_TIMx_Set_TOP_Value
-* @brief		  	-set a TOP value , it is maximum value the timer can reach (to control the output frequency)
-* @param [in] 		-TOP_Value: TOP_Value pass to ARR
-* @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
-* @retval 			-none
-* Note				-none
-*/
+ * @Fn				-MCAL_TIMx_Set_TOP_Value
+ * @brief		  	-set a TOP value , it is maximum value the timer can reach (to control the output frequency)
+ * @param [in] 		-TOP_Value: TOP_Value pass to ARR
+ * @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
+ * @retval 			-none
+ * Note				-none
+ */
 void MCAL_TIMx_Set_TOP_Value( TIMx_TypeDef* TIMx  , uint16_t TOP_Value )
 {
 	TIMx->ARR=TOP_Value;
@@ -397,12 +430,12 @@ void MCAL_TIMx_Set_TOP_Value( TIMx_TypeDef* TIMx  , uint16_t TOP_Value )
 
 
 /**================================================================
-* @Fn				-MCAL_TIMx_DeInit
-* @brief		  	-Disable counter
-* @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
-* @retval 			-none
-* Note				-none
-*/
+ * @Fn				-MCAL_TIMx_DeInit
+ * @brief		  	-Disable counter
+ * @param [in] 		-TIMx:  specified TIMx x=[ 2 : 3 ]
+ * @retval 			-none
+ * Note				-none
+ */
 void MCAL_TIMx_DeInit( TIMx_TypeDef* TIMx )
 {
 	TIMx->ARR=0;

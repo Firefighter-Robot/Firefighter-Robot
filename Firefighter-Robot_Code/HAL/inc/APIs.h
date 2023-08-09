@@ -4,14 +4,7 @@
 
 #include <stm32_f103c6_TIM2_3.h>
 #include"stm32_f103c6_GPIO.h"
-#include"stm32_f103c6_EXTI.h"
 #include "stm32f103x6.h"
-#include"stm32_f103c6_USART.h"
-#include"stm32_f103c6_SPI.h"
-#include "stm32_f103c6_I2C.h"
-#include "LCD.h"
-#include "Keypad.h"
-#include "EEPROM.h"
 #include "delay.h"
 #include "Servo.h"
 #include "stm32_f103c6_ADC.h"
@@ -23,7 +16,7 @@
 
 
 
-#define distance_step		20
+#define distance_step		15
 #define angle_step			50
 
 
@@ -123,7 +116,7 @@ extern int Flame_Left_Read();
 void pumb(uint8_t x);
 
 
-extern float Ultrasnic_Read();
+extern float Ultrasnic_Read(channel Chan);
     
 extern void Car_Routation(uint8_t direction); //routate the car
 extern void Car_Move(uint8_t speed , uint32_t distance); //move foraward only

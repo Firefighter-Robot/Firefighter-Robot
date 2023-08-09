@@ -3,6 +3,6 @@
 ../HAL/DC_Motor.c:127:6:Car_GetBack	16	static
 ../HAL/DC_Motor.c:146:6:Car_Rotation_Object	16	static
 ../HAL/DC_Motor.c:182:6:Car_Routation	16	static
-../HAL/DC_Motor.c:288:6:Car_Move	16	static
-../HAL/DC_Motor.c:340:6:U_Turn	16	static
-../HAL/DC_Motor.c:358:6:Car_Stop_Moving	8	static
+../HAL/DC_Motor.c:287:6:Car_Move	16	static
+../HAL/DC_Motor.c:339:6:U_Turn	16	static
+../HAL/DC_Motor.c:357:6:Car_Stop_Moving	8	static

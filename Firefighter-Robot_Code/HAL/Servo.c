@@ -11,7 +11,7 @@
 void Servo_Init(void)
 {
 	uint16_t top;
-	top=( ( 0.02 *  MCAL_Get_PCLC1_FREQ() ) / 8 );
+	top=( ( 0.02 *  8000000 ) / 8 );
 	TIMx_config_t  TIMx_Config;
 	TIMx_Config.COUNT_MODE=TIMx_COUNT_MODE_UP;
 	TIMx_Config.MODE=TIMx_MODE_PWM2;
@@ -31,6 +31,6 @@ void My_Servo(uint8_t angle)
 
 void Servo_DInit(void)
 {
-	// disable timer3
+	// disable timer2
 	TIM2->CR1=0;
 }

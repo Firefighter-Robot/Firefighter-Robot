@@ -13,12 +13,13 @@
 #include "delay.h"
 
 
-#define Trigger_Pin 					GPIO_PIN_5
+#define Trigger_Pin1 					GPIO_PIN_5
+#define Trigger_Pin2 					GPIO_PIN_11
 #define PORT 							GPIOB
 
 
 void HAL_Ultrasonic_init(void);
-float Ultrasnic_Read(void);
+float Ultrasnic_Read(channel Chan);
 
 
 

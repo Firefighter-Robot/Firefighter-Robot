@@ -135,8 +135,8 @@ void Car_GetBack( uint32_t del)
 		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_SET);
 
 		// by iteration angle
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Right_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(30),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Left_Motors);
 		delay_ms(del);
 
 
@@ -155,8 +155,8 @@ void Car_Rotation_Object(uint8_t direction , uint32_t del)
 		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_SET);
 
 		// by iteration angle
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Right_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Left_Motors);
 		delay_ms(del);
 
 	}
@@ -171,12 +171,12 @@ void Car_Rotation_Object(uint8_t direction , uint32_t del)
 		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Front,GPIO_PIN_RESET);
 
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Left_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(40),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Right_Motors);
 		delay_ms(del);
 
 	}
-	Car_Stop_Moving();
+
 }
 
 void Car_Routation(uint8_t direction)
@@ -254,8 +254,8 @@ void Car_Routation(uint8_t direction)
 		MCAL_GPIO_WritePin(GPIOB,Left_Motors_Front,GPIO_PIN_SET);
 
 		// by iteration angle
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Right_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Right_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Left_Motors);
 
 	}
 	else if(direction == HAL_Car_TurnLeft)
@@ -269,14 +269,13 @@ void Car_Routation(uint8_t direction)
 		MCAL_GPIO_WritePin(GPIOB,Right_Motors_Front,GPIO_PIN_RESET);
 
 		// by iteration set the duty cycle  according to specific angle to the Front_Left_Motor
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Left_Motors);
-		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(50),Right_Motors);
-
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Left_Motors);
+		MCAL_TIMx_Set_Compare_Value(TIM2,_Duty_Cycle(45),Right_Motors);
 	}
 #endif
 
 	// by iteration set delay to specific rotation
-	delay_ms(540);
+	delay_ms(700);
 
 
 	// stop the movement
@@ -332,7 +331,7 @@ void Car_Move(uint8_t speed , uint32_t distance)
 	delay_ms(distance);
 
 	// stop the movement
-	Car_Stop_Moving();
+	//Car_Stop_Moving();
 
 
 }
